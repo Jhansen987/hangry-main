@@ -1,0 +1,475 @@
+@charset "ISO-8859-1";
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJbecmNE.woff2) format('woff2');
+    unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FF;
+  }
+  /* latin-ext */
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJnecmNE.woff2) format('woff2');
+    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  /* latin */
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+html{margin:0; padding:0; font-size: 20px; height:100%;/*scroll-behavior:smooth;*/} 
+body{ 
+	min-height:100vh;
+    height:auto;
+	overflow-x:hidden;
+	overflow-y:auto;
+	background-color:#fff;
+	font-family:Poppins, serif;
+	margin:0;
+	padding:0;
+	font-size:0.5rem;
+	display:flex;
+	flex-direction:column;
+}
+
+/* ALL Z-INDEXES IN THIS CSS FILE */
+.main-nav{z-index:2;}
+.black-screen,.black-screen-2{z-index:3;}
+.mobile-nav-menu{z-index:4;}
+
+.black-screen,.black-screen-2{
+    min-height:100vh;
+	width:100%;
+	background-color:#000;
+	position:fixed;
+	opacity:0.7;
+	transition:visibility 0s, opacity 0.2s;
+	visibility:visible;
+    visibility:hidden;
+}
+
+.black-screen-2{
+    background-color:rgba(0,0,0,0.7);
+    opacity:1;
+    visibility:visible;
+    display:none;
+}
+
+/* CSS for Searchbar Popup */
+.box-searchbar-popup{
+    height:8.5rem;
+    background-color:#fff;
+    min-width:12rem;
+    width:90%;
+    max-width:41rem;
+    border-radius:0.4rem;
+    position:absolute;
+    margin:auto;
+    top:20%;right:0;left:0;
+    overflow:hidden;
+    text-align:center;
+    z-index:1;
+}
+
+.box-popup-header{
+    height:2rem;
+    width:100%;
+    background-color:#f49410;
+}
+
+.nav-searchbar{
+    height:1.5rem;
+    width:95%;
+    padding:0.4rem;
+    font-size:0.8rem;
+    margin:1rem auto 0.3rem;
+    border-radius:0.4rem;
+    display:block;
+    background-color:#e4e4e4;
+    border:none;
+    color:#545354;
+}
+
+input[type="text"]:focus{
+    outline:none;
+    border:1px solid #dfac35;
+}
+
+.btn-nav-search{
+    margin:0.4rem auto;
+    height:auto;
+    width:7rem;
+    color:#fff;
+    font-size:0.9rem;
+    border:none;
+    border-radius:0.4rem;
+    background-color:#f49410;
+    padding:0.4rem;
+    cursor:pointer;
+}
+
+.btn-close-popup{
+    border:none;
+    background-color:transparent;
+    height:100%;
+    font-size:1rem;
+    text-align:left;
+    color:#fff;
+    padding:0.3rem 0.8rem;
+    width:auto;
+    float:right;
+    margin-right:0rem;
+    border-radius:0.2rem;
+    cursor:pointer;
+}
+
+.btn-nav-search:hover,.btn-close-popup:hover{background-color:#f6a83c;}
+/* -------------------------- */
+
+.mobile-nav-menu{ /* appears after clicking hamburger icon */
+	min-height:100vh;
+    height:100vh;
+	width:13.5rem;
+	background-color:#fff;
+	margin:0;
+	padding:0;
+	overflow-x:hidden;
+	overflow-y:auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    position:fixed;
+	transform: translateX(-102%);
+    /* transform:translateX(0); */
+	transition: transform 0.2s;
+}
+
+.fade-in{ /* For the black screen when it appears */
+	opacity:0.7;
+	visibility:visible;
+}
+
+.slide-to-right{ /* animation that slides div to the right */
+	transform: translateX(0);
+}
+
+.main-nav{
+    height:3.2rem;
+    width:100%;
+    background-color:#d77f1d;
+    margin:0;
+    padding:0;
+    position:fixed;
+    overflow:visible;
+}
+
+.nav-links{
+    float:left;
+    height:100%;
+    /* background-color:green; */
+}
+
+.nav-links > ul{margin:0.9rem 0 0;padding:0 0.5rem 0 0;}
+
+.nav-links > ul > li{
+    display:inline-block;
+    margin:0.1rem 0.5rem 0;
+    position:relative;
+}
+
+.nav-links > ul > li > a{
+    color:#fff;
+    font-size:1rem;
+    text-decoration:none;
+    padding:0.7rem 0.5rem 0.7rem;
+}
+
+.nav-links > ul > li > ul{
+    position:absolute;
+    padding:0;
+    margin-top:0.65rem;
+    visibility: hidden;
+    opacity:0;
+}
+
+.nav-links > ul > li:hover > ul{
+    visibility:visible;
+    opacity:1;
+	transition: opacity 0.2s;
+}
+
+.nav-links > ul > li > ul > li{
+    list-style: none;
+    background-color:#864f12;
+    height:auto;
+    width:11rem;
+    overflow:hidden;
+}
+
+.nav-links > ul > li > ul > li > a{
+    text-decoration: none;
+    color:#fff;
+    font-size:0.9rem;
+    padding:0.5rem;
+    width:100%;
+    display:inline-block;
+}
+
+.nav-links > ul > li > ul > li > a:hover{
+    background-color:#a36016;
+}
+
+.nav-links > ul > li > a:hover,
+.div-account-features > a:hover,
+.btn-search:hover,.btn-search-2:hover{
+    background-color:#e5963e;
+    border-radius:0.3rem;
+    cursor:pointer;
+}
+
+.div-hamburger{
+    /* background-color:blue; */
+    width:4rem;
+    height:100%;
+    float:left;
+    display:none;
+    text-align:center;
+}
+
+.btn-hamburger{
+    border:none;
+    background-color:transparent;
+    padding:0.5rem;
+    margin:0.4rem 0 0.4rem 0.5rem;
+    border-radius:0.3rem;
+    cursor:pointer;
+}
+
+.btn-hamburger:hover{background-color:#e5963e;}
+
+.div-account-username{
+    height:100%;
+    width:10rem;
+    float:right;
+    padding-right:1.3rem;
+    position:relative;
+}
+
+.div-account-username > ul{
+    position:absolute;
+    padding:0;
+    margin:-1rem 0 0 0.5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    opacity:0;
+    visibility:hidden;
+}
+
+.div-account-username:hover ul{
+    visibility:visible;
+    opacity:1;
+    transition: opacity 0.2s;
+}
+
+.div-account-username > ul > li{
+    list-style: none;
+    background-color:#eeeeee;
+    height:auto;
+    border-bottom:1px solid #959596;
+    width:9rem;
+    overflow:hidden;
+}
+
+.div-account-username > ul > li > a{
+    font-size:0.9rem;
+    color:#616161;
+    text-decoration:none;
+    padding:0.5rem;
+    display:inline-block;
+    width:100%;
+}
+
+.div-account-username > ul > li > a:hover{
+    background-color:#dfdfdf;
+}
+
+.div-account-features{
+    float:right;
+    height:100%;
+    width:10rem;
+    text-align:right;
+    padding-right:0.5rem;
+    /* background-color:yellow; */
+}
+
+.div-business-logo{
+    height:100%;
+    width:6rem;
+    background-color:transparent;
+    float:left;
+    overflow:hidden;
+}
+
+.business-logo{
+    height:100%;
+    width:5rem;
+    padding:0.2rem 0 0 0.5rem;
+}
+
+.header-icons-1{
+    height:1.5rem;
+    width:1.5rem;
+    vertical-align:bottom;
+}
+
+.header-icons-2{
+    height:0.9rem;
+    width:0.9rem;
+    vertical-align:middle;
+    margin-left:0.3rem;
+}
+
+.div-account-username > a{
+    text-decoration:none;
+    color:#fff;
+    font-size:0.9rem;
+    display:inline-block;
+    padding:0 0 0.8rem 0;
+    margin:0.8rem 0.5rem;
+    height:auto;
+    width:9rem;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    /* background:green; */
+}
+
+.div-account-features > a{
+    text-decoration:none;
+    display:inline-block;
+    padding:0.4rem;
+    margin:0.5rem 0.3rem;
+}
+
+.btn-search,.btn-search-2{
+    background-color:transparent;
+    border:none;
+    height:2.4rem;
+    margin-right:0.2rem;
+    padding:0.4rem;
+    border-radius:0.3rem;
+}
+
+.btn-search-2{margin-top:0.4rem;}
+
+/* MOBILE NAV */
+.div-for-close-button{
+    width:100%;
+    height:2.3rem;
+    margin-bottom:0.5rem;
+    background-color:#d77f1d;
+    text-align:right;
+}
+
+.btn-close-nav{
+    border:none;
+    color:#fff;
+    font-size:0.9rem;
+    background-color:transparent;
+    height:100%;
+    width:2.5rem;
+    cursor:pointer;
+}
+
+.btn-close-nav:hover{background-color:#e5963e;}
+
+.mobile-div-username{
+    height:auto;
+    width:90%;
+    color:#595859;
+    font-weight:bold;
+    font-size:0.9rem;
+    padding:0.3rem 0.8rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow:hidden;
+}
+
+.mobile-nav-subdropdown{
+    height:auto;
+    width:100%;
+    display:none;
+}
+
+.mobile-nav-menu > ul{padding:0;margin:0.5rem 0 0;}
+.mobile-nav-subdropdown > ul{padding:0;margin:0;}
+.mobile-nav-menu > ul > li,.mobile-nav-subdropdown > ul > li{list-style:none;}
+
+.mobile-nav-menu > ul > li > a,.btn-mobile-nav-link{
+    text-decoration:none;
+    color:#595859;
+    font-size:1rem;
+    width:100%;
+    display:inline-block;
+    padding:0.6rem 0.8rem;
+    background-color:#fff;
+    margin:0;
+}
+
+.btn-mobile-nav-link{
+    text-align:left;
+    border:none;
+    cursor:pointer;
+    position:relative;
+    height:auto;
+    padding:0.7rem 0.8rem 0.7rem;
+}
+
+.mobile-nav-menu > ul > li > a:hover,
+.btn-mobile-nav-link:hover{background-color:#eeeeee;}
+
+.mobile-nav-icon-1{
+    position:absolute;
+    right:5%;
+    margin-top:0.15rem;
+}
+
+.mobile-nav-subdropdown > ul > li > a{
+    width:100%;
+    display:inline-block;
+    text-decoration:none;
+    font-size:0.9rem;
+    background-color:#dcdbdb;
+    color:#595859;
+    padding:0.6rem 2rem;
+}
+
+.mobile-nav-subdropdown > ul > li > a:hover{
+    background-color:#cacaca;
+}
+
+.mobile-nav-menu::-webkit-scrollbar {width:0.4rem;}
+.mobile-nav-menu::-webkit-scrollbar-track{background-color:#c3c4c3;}
+.mobile-nav-menu::-webkit-scrollbar-thumb {background-color:#deaa30;}
+.mobile-nav-menu::-webkit-scrollbar-thumb:hover  {background-color:#e3b750;}
+
+/* CSS MEDIA QUERIES FOR NAVHEADER */
+@media screen and (max-width:1050px){
+    .div-hamburger{display:block;}
+    .nav-links{display:none;}
+}
+
+@media screen and (max-width:660px){
+    .div-account-features{display:none;}
+}
+
+@media screen and (max-width:600px){
+    .nav-searchbar{width:90%;}
+}
+
+@media screen and (max-width:450px){
+    .div-account-username{display:none;}
+}
