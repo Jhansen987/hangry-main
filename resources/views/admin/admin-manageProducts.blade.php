@@ -1,4 +1,4 @@
-@include('headers.admin-header')
+@include('../headers.admin-header')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +50,7 @@
 @foreach($products as $product)
   <tr>
     <td>
-    <button class="btn-action-general-3">
+    <button class="btn-action-general-3" onclick="window.location.href='{{url('admin-viewProduct/'.$product->id)}}';">
         <img src="../icons/eye-orange-icon.svg" class="btn-icons-3">
         <p class="position-absolute-message-1">View Product</p>
       </button>
@@ -73,5 +73,6 @@
 @endforeach
 </table>
 </div>
+@include ('../footers.admin-footer')
 </body>
 </html>

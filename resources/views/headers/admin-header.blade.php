@@ -4,9 +4,9 @@
 	<meta charset="ISO-8859-1">
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel = "stylesheet" href="../css/navheader.css">
-    <link rel = "stylesheet" href="../css/style-main.css">
-    <script defer src="../js/header.js"></script>
+    <link rel = "stylesheet" href="{{asset('css/navheader.css')}}">
+    <link rel = "stylesheet" href="{{asset('css/style-main.css')}}">
+    <script defer src="{{asset('js/header.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -15,8 +15,8 @@
 <nav class="main-nav">
     <div class="div-account-username">
         <a href="#">
-            <img src="../icons/user_icon.svg" class="header-icons-1">
-            {{$user->username}}
+            <img src="{{asset('icons/user_icon.svg')}}" class="header-icons-1">
+            {{Auth::user()->username}}
         </a>
         <ul>
             <li><a href="#" onclick="document.getElementById('logout-form').submit();">Logout</a></li>
@@ -25,14 +25,14 @@
     </div>
     <div class="div-hamburger">
         <button class="btn-hamburger" onclick="responsiveNav()">
-            <img src="../icons/hamburger_icon.svg" alt="" class="header-icons-1">
+            <img src="{{asset('icons/hamburger_icon.svg')}}" alt="" class="header-icons-1">
         </button>
     </div>
 
     <!-- BUSINESS LOGO -->
     <div class="div-business-logo">
         <a href="{{url('admin-home')}}">
-            <img src="../images/Hangry Logo.png" alt="" class="business-logo">
+            <img src="{{asset('images/Hangry Logo.png')}}" alt="" class="business-logo">
         </a>
     </div>
     <div class="nav-links">
@@ -40,7 +40,7 @@
             <li><a href="{{url('admin-home')}}">HOME</a></li>
             <li>
                 <a href="#">MANAGE
-                    <img src="../icons/down-arrow-white-icon.svg" alt="" class="header-icons-2">
+                    <img src="{{asset('icons/down-arrow-white-icon.svg')}}" alt="" class="header-icons-2">
                 </a>
                 <ul>
                     <li><a href="{{route('admin-manageProducts')}}">Menus</a></li>
@@ -53,7 +53,7 @@
             <li><a href="admin-about.php">ABOUT</a></li>
             <li>
                 <a href="#">OTHERS
-                    <img src="../icons/down-arrow-white-icon.svg" alt="" class="header-icons-2">
+                    <img src="{{asset('icons/down-arrow-white-icon.svg')}}" alt="" class="header-icons-2">
                 </a>
                 </a>
                 <ul>
@@ -71,8 +71,8 @@
         <button class="btn-close-nav" onclick="responsiveNav()">X</button>
     </div>
     <div class="mobile-div-username">
-        <img src="../icons/user_icon-gray.svg" class="header-icons-1">
-        {{$user->username}}
+        <img src="{{asset('icons/user_icon-gray.svg')}}" class="header-icons-1">
+        {{Auth::user()->username}}
     </div>
     <ul>
         <li><a href="{{url('admin-home')}}">Home</a></li>   
@@ -80,7 +80,7 @@
     </ul>
     <button id="mobile-subdropdown-btn-1" class="btn-mobile-nav-link" onclick="adminResponsiveSubDropdown1()">
         Manage
-        <img src="../icons/down-arrow-icon-gray.svg" alt="" id="nav-arrow-1" class="mobile-nav-icon-1">
+        <img src="{{asset('icons/down-arrow-icon-gray.svg')}}" alt="" id="nav-arrow-1" class="mobile-nav-icon-1">
     </button>
     <div id="mobile-subdropdown-1" class="mobile-nav-subdropdown">
         <ul>
@@ -93,7 +93,7 @@
     </div>
     <button id="mobile-subdropdown-btn-2" class="btn-mobile-nav-link" onclick="adminResponsiveSubDropdown2()">
         Others
-        <img src="../icons/down-arrow-icon-gray.svg" alt="" id="nav-arrow-2" class="mobile-nav-icon-1">
+        <img src="{{asset('icons/down-arrow-icon-gray.svg')}}" alt="" id="nav-arrow-2" class="mobile-nav-icon-1">
     </button>
     <div id="mobile-subdropdown-2" class="mobile-nav-subdropdown">
         <ul>

@@ -5,9 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use App\Models\User;
 use App\Models\Announcement;
 use App\Models\Product;
+use App\Models\Cart;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,39 +38,24 @@ Route::middleware([
 
 });
 
-//GUEST AND CUSTOMER SIDE
-// Route::get('/', function () {
-//     if(Auth::check() && Auth::user()->account_type == 'customer'){
-//         return view('home'); 
-//     }
-//     return view('guest-home');
-// });
+
+//GUEST SIDE
+Route::get('/guest-viewproduct/{id}',[ProductController::class,'viewProduct']);
+
+//CUSTOMER SIDE
 
 Route::get('/',[AnnouncementController::class,'viewAnnouncements']);
 Route::get('/home',[AnnouncementController::class,'viewAnnouncements']);
 
-// Route::get('/home', function () {
-//     if(Auth::check() && Auth::user()->account_type == 'customer'){
-//         return view('home'); 
-//     }else if (Auth::check() && Auth::user()->account_type == 'admin'){
-//         return view('admin/admin-home');
-//     }else{
-//         return view('guest-home');
-//     }
-// });
-
-Route::get('/menu', function () {
-    if(Auth::check() && Auth::user()->account_type == 'customer'){
-        return view('menu'); 
-    }
-    return view('guest-menu');
-});
+Route::get('/menu', [ProductController::class,'displayAllProducts']);
+Route::get('/viewproduct/{id}', [ProductController::class,'viewProduct']);
 
 Route::get('/cart', function () {
-    if(Auth::check() && Auth::user()->account_type == 'customer'){
-        return view('cart'); 
-    }
-    return view('auth/login');
+    // if(Auth::check() && Auth::user()->account_type == 'customer'){
+    //     return view('cart'); 
+    // }
+    // return view('auth/login');
+    return view('cart');
 });
 
 Route::get('/about', function (){
@@ -102,8 +89,7 @@ Route::get('/privacypolicy', function (){
 // ADMIN SIDE....
 Route::get('/admin-home', function () {
     if(Auth::check() && Auth::user()->account_type == 'admin'){
-        $user=User::find(Auth::user()->id);
-        return view('admin/admin-home',compact('user'));
+        return view('admin/admin-home');
     }else{
         return view('auth/login');
     }
@@ -136,19 +122,11 @@ Route::get('/admin-editProduct/{id}',[ProductController::class,'editProduct']);
 Route::post('/admin-editProduct/update/{id}',[ProductController::class,'updateProduct']);
 
 
-Route::get('/admin-manageProducts',function(){
-    $products = Product::latest()->paginate('5');
-    if(Auth::check() && Auth::user()->account_type == 'admin'){
-        $user=User::find(Auth::user()->id);
-        return view('admin/admin-manageProducts',compact('user','products'));
-    }else{
-        return view('auth/login');
-    }
-})->name('admin-manageProducts');
+Route::get('/admin-manageProducts',[ProductController::class,'displayAllProducts'])->name('admin-manageProducts');
 
 Route::post('/admin-manageProducts/add',[ProductController::class, 'createProduct'])->name('addProduct');
 
-
+Route::get('/admin-viewProduct/{id}', [ProductController::class, 'viewProduct'])->name('admin-viewproduct');
 //Manage Customers
 
 //Manage Orders

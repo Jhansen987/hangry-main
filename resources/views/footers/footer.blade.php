@@ -3,7 +3,7 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
-	<link rel = "stylesheet" href="css/style-footer.css">
+	<link rel = "stylesheet" href="{{asset('css/style-footer.css')}}">
 </head>
 <body>
 <footer class="div-footer">

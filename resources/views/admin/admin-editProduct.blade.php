@@ -14,9 +14,13 @@
     </div>
     <form action="{{url('admin-editProduct/update/'.$product->id)}}" method = "POST" enctype="multipart/form-data">
         @csrf   
-        <label for="menuImage"><b>Menu Image *</b></label><br>
+
+		<img src="{{asset('storage/'.$product->product_image_path)}}" alt="" class="current-product-pic">
+        <br>
+		<label for="menuImage"><b>New Menu Image (Optional)</b></label><br>
         <div style="text-align:left;margin-left:1rem;">
-		<input type="file" id="menuImage" name="menuImage" value="{{$product->profile_image_path}}" required><br><br>
+		<input type="file" id="menuImage" name="menuImage"><br><br>
+		<input type="hidden" name="currentMenuImage" value="{{$product->profile_image_path}}">
         </div>
 			
 		<label for="menuName"><b>Menu Name *</b></label><br>

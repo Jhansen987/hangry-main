@@ -3,8 +3,8 @@
 <head>
 	<meta content="width=device-width, initial-scale=1" name="viewport"/>
 	<meta charset="ISO-8859-1">
-	<link rel = "stylesheet" href="css/style-static.css">
-	<script defer src="js/static.js"></script>
+	<link rel = "stylesheet" href="{{asset('css/style-static.css')}}">
+	<script defer src="{{asset('js/static.js')}}"></script>
 </head>
 <body>
 <div id="black-screen" class="black-screen"></div>

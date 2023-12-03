@@ -13,6 +13,17 @@ class ProductController extends Controller
 {
     //
 
+    public function displayAllProducts(){
+        $products = Product::latest()->paginate('6');
+        if(Auth::check() && Auth::user()->account_type == 'admin'){
+            return view('admin/admin-manageProducts',compact('products'));
+        }else if(Auth::check() && Auth::user()->account_type == 'customer'){
+            return view('menu',compact('products'));
+        }else{
+            return view('guest-menu',compact('products'));
+        }
+    }
+
     public function createProduct(Request $request){
         $validated = $request->validate([
             'menuImage' => 'required|image|max:2048|mimes:jpg,png,jpeg',
@@ -56,7 +67,7 @@ class ProductController extends Controller
     //updates the product in the database..
     public function updateProduct(Request $request , $id){
         $validated = $request->validate([
-            'menuImage' => 'required|image|max:2048|mimes:jpg,png,jpeg',
+            'menuImage' => 'nullable|image|max:2048|mimes:jpg,png,jpeg',
             'menuName' => 'required|string|unique:products,product_name',
             'menuPrice' => 'required|numeric|min:0',
             'menuStock' => 'required|numeric|min:0',
@@ -64,20 +75,39 @@ class ProductController extends Controller
         ]);
 
         //get the image path of the user's newly uploaded image for a product..
-        $imagepath = $request->file('menuImage')->store('product-images','public');
-
-        $update = Product::find($id)->update([
-            'product_image_path'=> $imagepath,
-            'product_name'=> $request->menuName,
-            'price'=> $request->menuPrice,
-            'stocks'=> $request->menuStock,
-            'description'=> $request->menuDescription,
-        ]);
+        if($request->hasFile('menuImage')){
+            $imagepath = $request->file('menuImage')->store('product-images','public');
+            $update = Product::find($id)->update([
+                'product_image_path'=> $imagepath,
+                'product_name'=> $request->menuName,
+                'price'=> $request->menuPrice,
+                'stocks'=> $request->menuStock,
+                'description'=> $request->menuDescription,
+            ]);
+        }else{
+            $update = Product::find($id)->update([
+                'product_name'=> $request->menuName,
+                'price'=> $request->menuPrice,
+                'stocks'=> $request->menuStock,
+                'description'=> $request->menuDescription,
+            ]);
+        }
         // return Redirect()->route('admin-manageProducts')->with('success','Product Updated Succesfully!');
         if($update){
             return Redirect()->route('admin-manageProducts')->with(['success'=>'Menu Updated Successfully!']);
             }else{
                 return redirect()->back()->withInput()->withErrors(['error' => 'Failed to create menu.']);
             }
+    }
+
+    public function viewProduct($id){
+        $product = Product::find($id);
+        if(Auth::check() && Auth::user()->account_type == 'admin'){
+            return view('admin/admin-viewProduct',compact('product'));
+        }else if(Auth::check() && Auth::user()->account_type == 'customer'){
+            return view('viewproduct',compact('product'));
+        }else{
+            return view('guest-viewproduct',compact('product'));
+        }
     }
 }

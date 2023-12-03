@@ -3,9 +3,9 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
-	<link rel = "stylesheet" href="css/navheader.css">
-    <link rel = "stylesheet" href="css/style-main.css">
-    <script defer src="js/header.js"></script>
+	<link rel = "stylesheet" href="{{asset('css/navheader.css')}}">
+    <link rel = "stylesheet" href="{{asset('css/style-main.css')}}">
+    <script defer src="{{asset('js/header.js')}}"></script>
 </head>
 <body>
 
@@ -24,7 +24,7 @@
 <nav class="main-nav">
     <div class="div-account-username">
         <a href="#">
-            <img src="icons/user_icon.svg" class="header-icons-1">
+            <img src="{{asset('icons/user_icon.svg')}}" class="header-icons-1">
             Guest
         </a>
         <ul>
@@ -33,19 +33,19 @@
     </div>
     <div class="div-account-features">
         <button class="btn-search-2" onclick="searchbarPopup()">
-            <img src="icons/search-icon.svg" class="header-icons-1">
+            <img src="{{asset('icons/search-icon.svg')}}" class="header-icons-1">
         </button>
     </div>
     <div class="div-hamburger">
         <button class="btn-hamburger" onclick="responsiveNav()">
-            <img src="icons/hamburger_icon.svg" alt="" class="header-icons-1">
+            <img src="{{asset('icons/hamburger_icon.svg')}}" alt="" class="header-icons-1">
         </button>
     </div>
 
     <!-- BUSINESS LOGO -->
     <div class="div-business-logo">
         <a href="{{url('home')}}">
-            <img src="images/Hangry Logo.png" alt="" class="business-logo">
+            <img src="{{asset('images/Hangry Logo.png')}}" alt="" class="business-logo">
         </a>
     </div>
     <div class="nav-links">
@@ -55,7 +55,7 @@
             <li><a href="{{url('about')}}">ABOUT</a></li>
             <li>
                 <a href="#">OTHERS
-                    <img src="icons/down-arrow-white-icon.svg" alt="" class="header-icons-2">
+                    <img src="{{asset('icons/down-arrow-white-icon.svg')}}" alt="" class="header-icons-2">
                 </a>
                 <ul>
                     <li><a href="{{url('faq')}}" target="_blank" rel="noopener noreferrer">FAQs</a></li>
@@ -73,7 +73,7 @@
         <button class="btn-close-nav" onclick="responsiveNav()">X</button>
     </div>
     <div class="mobile-div-username">
-        <img src="icons/user_icon-gray.svg" class="header-icons-1">
+        <img src="asset('icons/user_icon-gray.svg')}}" class="header-icons-1">
         Guest
     </div>
     <ul>
@@ -83,7 +83,7 @@
     </ul>
     <button id="mobile-subdropdown-btn-1" class="btn-mobile-nav-link" onclick="responsiveSubDropdown1()">
         Others
-        <img src="icons/down-arrow-icon-gray.svg" alt="" id="nav-arrow-1" class="mobile-nav-icon-1">
+        <img src="asset('icons/down-arrow-icon-gray.svg')}}" alt="" id="nav-arrow-1" class="mobile-nav-icon-1">
     </button>
     <div id="mobile-subdropdown-1" class="mobile-nav-subdropdown">
         <ul>

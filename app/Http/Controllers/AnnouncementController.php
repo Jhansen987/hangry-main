@@ -13,11 +13,9 @@ class AnnouncementController extends Controller
     public function viewAnnouncements(){
         $announcements = Announcement::latest()->paginate('5');
         if(Auth::check() && Auth::user()->account_type == 'admin'){
-            $user=User::find(Auth::user()->id);
-            return view('admin/admin-manageAnnouncements',compact('user','announcements'));
+            return view('admin/admin-manageAnnouncements',compact('announcements'));
         }else if(Auth::check() && Auth::user()->account_type == 'customer'){
-            $user=User::find(Auth::user()->id);
-            return view('home',compact('user','announcements'));
+            return view('home',compact('announcements'));
         }else{
             return view('guest-home',compact('announcements'));
         }

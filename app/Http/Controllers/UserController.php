@@ -8,13 +8,11 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function viewUserProfile(){
+    public function viewUserProfile(){ //viewing 'My Profile' page..
         if(Auth::check() && Auth::user()->account_type == 'customer'){
-        $user = User::find(Auth::user()->id);
-        return view('myprofile',compact('user'));
+        return view('myprofile');
         }else if(Auth::check() && Auth::user()->account_type == 'admin'){
-            $user = User::find(Auth::user()->id);
-            return view('admin/admin-home',compact('user'));
+            return view('admin/admin-home');
         }else{
             return view('auth/login');
         }

@@ -169,6 +169,13 @@ label{
   float:left;
 }
 
+.current-product-pic{
+  margin:0 auto 1.5rem;
+  height:7rem;
+  width:7rem;
+  border-radius:0.4rem;
+}
+
 textarea{
   background-color:#e1e2e1;
 	border:none;

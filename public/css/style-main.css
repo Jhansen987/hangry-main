@@ -228,7 +228,7 @@ body{
     border-radius:0.8rem;
     border:3px solid #deaa30;
     overflow:hidden;
-    padding-bottom:0.5rem;
+    /* padding-bottom:0.2rem; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -500,6 +500,7 @@ body{
     vertical-align:middle;
     border:none;
     background-color:transparent;
+    cursor:pointer;
 }
 
 /*CSS FOR VIEW PRODUCT PAGE*/
@@ -581,7 +582,7 @@ a.back-hyperlink{
 }
 
 .txt-viewproduct-product-stock{
-	font-size:0.8rem;
+	font-size:0.7rem;
 	font-weight:bold;
 	color:#c18108;
 	margin:0.4rem 0 0;
@@ -592,21 +593,21 @@ a.back-hyperlink{
 }
 
 .txt-viewproduct-header{
-	font-size:1rem;
+	font-size:0.9rem;
 	font-weight:bold;
 	color:#6a6a69;
 	margin:0;
 }
 
 .txt-viewproduct-product-price{
-	font-size:1.5rem;
+	font-size:1.2rem;
 	font-weight:bold;
-	color:#e69909;
-	margin:0 0 0.5rem 0;	
+	color:#d92e26;
+	margin:0.7rem 0 0.5rem 0;	
 }
 
 .txt-viewproduct-product-description{
-	font-size:0.9rem;
+	font-size:0.85rem;
 	color:#7e7e7d;
 	margin:0 0 1rem 0;
 }
@@ -626,6 +627,7 @@ a.back-hyperlink{
     display:inline-block;
     /* background:pink; */
     margin-right:0.1rem;
+    font-size:0.7rem;
 
 }
 .div-viewproduct-rating > ul > li > a{
@@ -640,19 +642,20 @@ a.back-hyperlink{
 .btn-action-viewproduct{
     display:inline-block;
     border-radius:0.4rem;
-    border:2px solid #e69a0a;
-    color:#e69a0a;
+    border:2px solid #d92e26;
+    color:#d92e26;
     /* font-weight:bold; */
     background-color:transparent;
-    padding:0.5rem;
+    padding:0.3rem 0.5rem;
+    margin-top:0.7rem;
     margin-bottom:0.5rem;
     margin-right:0.3rem;
-    font-size:1rem;
+    font-size:0.9rem;
     cursor:pointer;
 }
 
 .btn-action-viewproduct:hover{
-    background-color:#e69a0a;
+    background-color:#d92e26;
     color:#fff;
 }
 
@@ -830,8 +833,7 @@ a.back-hyperlink{
 	font-size:1rem;
 }
 
-.txt-order-details-3{color:#b07a10;}
-.txt-order-details-4{color:#b07a10;}
+.txt-order-details-3,.txt-order-details-4{color:#d92e26;}
 .txt-no-item{color:#2c60d3;font-size:1.3rem;}
 .txt-note{font-size:0.8rem;color:#626261;margin:0 auto 0.5rem auto;width:90%;}
 
@@ -905,7 +907,7 @@ a.back-hyperlink{
 
 .table-content-box-1::-webkit-scrollbar{height:0.3rem;width:0.3rem;}
 .table-content-box-1::-webkit-scrollbar-track{background-color:#fff;}
-.table-content-box-1::-webkit-scrollbar-thumb{background:#ecae34;}
+.table-content-box-1::-webkit-scrollbar-thumb{background:#de3428;}
 
 .box-cart-item{
 	height:auto;
@@ -936,7 +938,7 @@ a.back-hyperlink{
 .cart-product-image{
 	height:4.8rem;
 	width:4.8rem;
-	border:2px solid #000;
+	/* border:2px solid #000; */
 	margin:auto;
 	vertical-align:middle;
 }
@@ -982,14 +984,15 @@ input[type=number]:focus{
 	position:absolute;
 	font-weight:bold;
 	color:#fff;
-	background-color:#db9814;
+	/* background-color:#db9814; */
+    background-color:#de362a;
 	border:none;
 	font-size:1.58rem;
 	cursor:pointer;
 	padding:0 0.3rem;
 }
 
-.btn-cart-quantity:hover{background-color:#ecae34;}
+.btn-cart-quantity:hover{background-color:#e35349;}
 .left{left:0.1rem;padding:0 0.44rem;}
 .right{right:0.1rem;}
 
@@ -1027,10 +1030,10 @@ input[type=number]:focus{
 	margin:0.1rem 0 0.5rem 0;
 }
 
-.btn-cart-1,.btn-cart-full-width{color:#db9814;background-color:#fff;border:2px solid #db9814;}
-.btn-danger{border:2px solid #de362a;color:#de362a;background-color:#fff;}
+.btn-cart-1{color:#db9814;background-color:#fff;border:2px solid #db9814;}
+.btn-danger,.btn-cart-full-width{border:2px solid #de362a;color:#de362a;background-color:#fff;}
 .btn-cart-1:hover,.btn-cart-full-width:hover{background-color:#db9814;color:#fff;}
-.btn-danger:hover{background-color:#e1463b;color:#fff;}
+.btn-danger:hover,.btn-cart-full-width:hover{background-color:#e1463b;color:#fff;}
 
 /* CSS FOR CHECKOUT PAGE */
 .content-box-5,.content-box-6,.content-box-7{
@@ -1355,8 +1358,8 @@ input[type="radio"]{
 .general-table tr:nth-child(odd){background-color: #efefef;}
 
 .small-prod-image{
-    width:5rem;
-    height:5rem;
+    width:7.5rem;
+    height:7.5rem;
     border-radius:0.4rem;
     border:3px solid #e95116;
     background-color:transparent;
@@ -1522,7 +1525,7 @@ input[type="radio"]{
 }
 
 @media screen and (max-width:400px){
-    .box-menu,.admin-box-menu{width:15.6rem;}
+    .box-menu,.admin-box-menu{width:15.6rem;height:12rem;}
     .menu-status{font-size:0.9rem;width:auto;display:inline-block;}
     .txt-box-info-email{font-size:0.8rem;}
     .box-shipping-address,.div-for-checkout-edit{display:block;text-align:left;}

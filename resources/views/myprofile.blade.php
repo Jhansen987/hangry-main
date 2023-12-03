@@ -7,7 +7,11 @@
 <body class="orange-background">
 <div class="main-body-content-2" style="padding-top:3rem;">
     <div class="dashboard-header">
-        <img src="{{asset('storage/'.$user->profile_photo_path)}}" class="myprofile-picture">
+        @if(Auth::user()->profile_photo_path == null)
+            <img src="{{asset('images/default-userpic.jpg')}}" class="myprofile-picture">
+        @else
+            <img src="{{asset('storage/'.Auth::user()->profile_photo_path)}}" class="myprofile-picture">
+        @endif
         <h1>MY PROFILE</h1>
         <a href="{{route('profile.show')}}">EDIT PROFILE</a>
         <br><br>
@@ -16,35 +20,35 @@
         <div class="box-info-1">
             FIRST NAME<br>
             <span class="txt-box-info">
-                {{$user->firstname}}
+                {{Auth::user()->firstname}}
             </span>
         </div>
 
         <div class="box-info-1">
             LAST NAME<br>
             <span class="txt-box-info">
-                {{$user->lastname}}
+                {{Auth::user()->lastname}}
             </span>
         </div>
 
         <div class="box-info-1">
             GENDER<br>
             <span class="txt-box-info">
-                {{$user->gender}}
+                {{Auth::user()->gender}}
             </span>
         </div>
 
         <div class="box-info-1">
             USERNAME<br>
             <span class="txt-box-info">
-                {{$user->username}}
+                {{Auth::user()->username}}
             </span>
         </div>
 
         <div class="box-info-1">
             CONTACT NUMBER<br>
             <span class="txt-box-info">
-                {{$user->contactnumber}}
+                {{Auth::user()->contactnumber}}
             </span>
         </div>
 
@@ -58,14 +62,14 @@
         <div class="box-info-1-v2">
              HOME ADDRESS<br>
             <span class="txt-box-info">
-                {{$user->address}}
+                {{Auth::user()->address}}
             </span>
         </div>
 
         <div class="box-info-1-v2">
             EMAIL ADDRESS<br>
             <span class="txt-box-info-email">
-                {{$user->email}}
+                {{Auth::user()->email}}
             </span>
         </div>
         

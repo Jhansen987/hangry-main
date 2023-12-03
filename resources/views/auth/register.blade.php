@@ -11,6 +11,7 @@
         </div>
         <form method="POST" action="{{ route('register') }}">
             @csrf
+
             <div style="display:inline-block;">
                 <x-label for="firstname" value="First Name *"/>
                 <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('name')" required/>
