@@ -6,12 +6,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Cart;
 
 class CartController extends Controller
 {
     //
-    public function addCart(Request $request,$id){
+    public function viewCart(){
+        if(Auth::check() && Auth::user()->account_type == 'customer'){
+            $carts = Cart::where('username',Auth::user()->username)->with('product')->get();
+            return view('cart',compact('carts')); 
+        }else{
+            return view('auth/login');
+        }
+    }
 
+    public function addCart($id){
         $cart = Cart::create([
             'username' => Auth::user()->username,
             'product_id' => $id,
@@ -19,9 +28,7 @@ class CartController extends Controller
         ]);
 
         if($cart){
-        return Redirect()->route('viewProduct')->with(['success'=>'Item added to cart successfully!']);
-        }else{
-            return redirect()->back()->withInput()->withErrors(['error' => 'Oops! An error occurred, please try again later.']);
+            return Redirect()->back()->with(['success'=>'Item added to your cart successfully!']);
         }
     }
 }

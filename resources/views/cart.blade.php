@@ -14,21 +14,27 @@
 	<div class="content-box-1">			
 		<div class="table-content-box-1">
 
+		@if($carts->isEmpty())
+		<img src="{{asset('images/sad-face.png')}}" alt="" class="general-empty-image">
+		<p class="no-cart-message"><b>You currently have no items in your cart..</b></p>
+		
+		@else
+			@foreach($carts as $cart)
 			<div class="box-cart-item"> <!-- Generate this whole div for every cart item found in customer's cart -->
 				<div class="cart-product-image-column">
-					<img src="images/Savory Southwest Fiesta Bowl.png" class="cart-product-image">
+					<img src="{{asset('storage/'.$cart->product->product_image_path)}}" class="cart-product-image">
 				</div>
 				
 				<div class="cart-product-column">
-					<p>Savory Southwest Fiesta Bowl</p>
+					<p>{{$cart->product->product_name}}</p>
 				</div>
 				
-				<div class="cart-price-column">PHP 250.00</div>
+				<div class="cart-price-column">Php {{$cart->product->price}}</div>
 				
 				<div class="cart-quantity-column">
 					<div class="div-cart-quantity">
 						<button class="btn-cart-quantity left">-</button>
-						<input type="number" id="cartQuantity" name = "cartQuantity" value="1" min="1" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
+						<input type="number" id="cartQuantity" name = "cartQuantity" value="{{$cart->quantity}}" min="1" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
 						<button class="btn-cart-quantity right">+</button>
 					</div>
 				</div>
@@ -37,7 +43,8 @@
 					<button class="btn-remove-item-2"><img src="icons/trash-red_icon.svg" class="btn-icons"></button>
 				</div>
 			</div>
-
+			@endforeach
+		@endif
 		</div>
 	</div>
 

@@ -809,6 +809,20 @@ a.back-hyperlink{
 }
 
 /*CSS FOR CART PAGE */
+.general-empty-image{
+    margin:4rem auto 0;
+    height:10rem;
+    width:11rem;
+}
+
+.no-cart-message{
+    font-size:1rem;
+    font-weight:bold;
+    color:red;
+    padding:0 4rem 4rem;
+    /* padding:9.2rem 4rem; */
+}
+
 .cart-order-details-table{
     width:100%;
 }

@@ -9,6 +9,28 @@
         <link rel="stylesheet" href="css/style-main.css">
     </head>
 <body>
+@if(session('success'))
+
+<div class="toast-container position-fixed top-0 p-3" style="width:100%;">
+  <div id="liveToast" class="toast" style="margin:auto;background-color:#fff;" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header" style="background-color:#dbdadb;">
+      <img src="../icons/notification-gray-fill_icon.svg" class="rounded me-2" alt="...">
+      <small class="me-auto" style="color:#5e5b5e;">Notification</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      <span style="color:#5e5b5e;">{{session('success')}}</span>
+    </div>
+  </div>
+</div>
+<script>
+    const toastLiveExample = document.getElementById('liveToast');
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+    toastBootstrap.show();
+    const audio = new Audio("{{asset('sounds/alert-sound.mp3')}}");
+    audio.play();
+</script>
+@endif
 <div class="main-body-content">
 
     <div class="home-title-header-1" style="color:#ed6a00;">
@@ -42,7 +64,7 @@
                     @endif
                     <!-- <button class="btn-menu-1">ADD TO CART</button>-->
                     <button class="btn-menu-1" onclick="window.location.href='{{url('viewproduct/'.$product->id)}}';">VIEW MENU</button>
-                    <button class="btn-menu-1" onclick="window.location.href='#';">ADD TO CART</button>
+                    <button class="btn-menu-1" onclick="window.location.href='{{url('cart/add/'.$product->id)}}';">ADD TO CART</button>
                 </div>
             </div>
         </div>

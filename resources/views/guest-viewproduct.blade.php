@@ -98,9 +98,6 @@
 		<p class="txt-viewproduct-product-price">
             Php {{$product->price}}
 		</p>
-		<div class="div-viewproduct-1">
-			<button class="btn-action-viewproduct">Add to Cart</button>
-		</div>
 		<br>
 		<p class="txt-viewproduct-header">PRODUCT DESCRIPTION</p>
 		<p class="txt-viewproduct-product-description">
