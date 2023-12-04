@@ -12,7 +12,7 @@
         @else
             <img src="{{asset('storage/'.Auth::user()->profile_photo_path)}}" class="myprofile-picture">
         @endif
-        <h1>MY PROFILE</h1>
+        <h1><b>{{Auth::user()->firstname}} {{Auth::user()->lastname}}</b></h1><br>
         <a href="{{route('profile.show')}}">EDIT PROFILE</a>
         <br><br>
     </div>

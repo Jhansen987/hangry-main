@@ -218,10 +218,10 @@ body{
     text-align:left;
 }
 
-.box-menu,.admin-box-menu{
+.box-menu{
     display:inline-block;
     position:relative;
-    height:10rem;
+    height:11rem;
     width:30rem;
     /* background:pink; */
     margin:0.4rem 0 0.4rem 2.8rem;
@@ -231,8 +231,6 @@ body{
     /* padding-bottom:0.2rem; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
-
-.admin-box-menu{height:12rem;}
 
 .box-announcement{
     max-width:71rem;
@@ -326,6 +324,7 @@ body{
 .div-menu-image{
     height:10rem;
     width:10rem;
+    padding-left:0.5rem;
     /* background-color:blue; */
     text-align:center;
     vertical-align:middle;
@@ -379,10 +378,11 @@ body{
     font-weight:bold;
     color:#fff;
     background-color:#f82e23;
-    padding:0 0.6rem 0;
+    font-size:0.9rem;
+    padding:0.3rem 0.4rem;
     margin-left:0.5rem;
     border-radius:1rem;
-    width:7.2rem;
+    width:7.3rem;
 }
 
 .btn-menu-1{
@@ -398,6 +398,7 @@ body{
     padding:0.5rem;
     margin:0.3rem 0 0 0.4rem;
     cursor:pointer;
+    font-size:0.7rem;
     vertical-align:top;
 }
 
@@ -452,8 +453,9 @@ body{
 
 .searchbar{
     height:1.9rem;
+    font-size:0.7rem;
     width:20rem;
-    padding:0 0.5rem;
+    padding:0.2rem 0.5rem;
     background-color:#fff;
     border-radius:0.5rem;
     border:2px solid #df9a12;
@@ -501,6 +503,8 @@ body{
     border:none;
     background-color:transparent;
     cursor:pointer;
+    border:2px solid red;
+    border-radius:50%;
 }
 
 /*CSS FOR VIEW PRODUCT PAGE*/
@@ -693,7 +697,7 @@ a.back-hyperlink{
     color:#000;
     font-size:1.1rem;
     height:auto;
-    width:15rem;
+    width:16.1rem;
     vertical-align:top;
     border:3px solid #deaa30;
     background-color:#fff;
@@ -811,8 +815,8 @@ a.back-hyperlink{
 /*CSS FOR CART PAGE */
 .general-empty-image{
     margin:4rem auto 0;
-    height:10rem;
-    width:11rem;
+    height:12rem;
+    width:13rem;
 }
 
 .no-cart-message{
@@ -942,6 +946,7 @@ a.back-hyperlink{
 	font-size:0.9rem;
 	text-align:center;
 	padding:0.3rem;
+    box-sizing:border-box;
 }
 
 .cart-product-image-column{width:8%;}
@@ -981,17 +986,18 @@ input::-webkit-outer-spin-button{
 }
 
 input[type=number]{
-	width:2rem;
-	height:1.5rem;
+	width:2.5rem;
+	height:2rem;
 	text-align:center;
 	font-family:Poppins, serif;
 	margin:auto;
-	border:2px solid #626261;
+    border-radius:0.4rem;
+	border:2px solid #d99714;
 }
 
 input[type=number]:focus{
 	outline:none;
-	border:2px solid #ecae34;	
+	border:2px solid red;	
 }
 
 .btn-cart-quantity{
@@ -1001,14 +1007,18 @@ input[type=number]:focus{
 	/* background-color:#db9814; */
     background-color:#de362a;
 	border:none;
-	font-size:1.58rem;
+    height:1.5rem;
+    width:1.5rem;
+    border-radius:50%;
+	font-size:0.9rem;
 	cursor:pointer;
 	padding:0 0.3rem;
+    box-sizing:border-box;
 }
 
 .btn-cart-quantity:hover{background-color:#e35349;}
-.left{left:0.1rem;padding:0 0.44rem;}
-.right{right:0.1rem;}
+.left{left:-0.5rem;top:0.3rem;}
+.right{right:-0.5rem;top:0.25rem;}
 
 .div-no-items{
 	height:auto;
@@ -1165,7 +1175,7 @@ input[type=number]:focus{
 .btn-checkout{
 	color:#fff;
 	font-size:0.9rem;
-	background-color:#e69909;
+	background-color:#de362a;
 	border-radius:0.3rem;
 	cursor:pointer;
 	border:none;
@@ -1178,7 +1188,7 @@ input[type=number]:focus{
 }
 
 
-.btn-checkout:hover{background-color:#f6ac21;color:#fff;}
+.btn-checkout:hover{background-color:#e1463b;}
 
 .label-payment-option{
 	margin:0 0 0 0.5rem;
@@ -1393,11 +1403,11 @@ input[type="radio"]{
 .btn-icons-3{height:1.4rem;width:1.4rem;}
 
 @media screen and (max-width:1350px){
-    .box-menu,.admin-box-menu{margin:0.4rem 0 0.4rem 2rem;}
+    .box-menu{margin:0.4rem 0 0.4rem 2rem;}
 }
 
 @media screen and (max-width:1300px){
-    .box-menu,.admin-box-menu{margin:0.4rem auto 1.2rem;display:block;}
+    .box-menu{margin:0.4rem auto 1.2rem;display:block;}
     .menu-section{display:block;text-align:center;width:90%;}
     .business-logo-2,.btn-shop-now-1{margin-left:3rem;}
     .txt-carousel{padding-left:3rem;}
@@ -1480,7 +1490,7 @@ input[type="radio"]{
 }
 
 @media screen and (max-width:680px){
-    .box-menu,.admin-box-menu{width:25rem;}
+    .box-menu{width:25rem;}
     .txt-about-content{font-size:0.7rem;}
     .home-title-header-1{font-size:1.8rem;}
     .table-icons{width:2rem;height:2rem;}
@@ -1500,7 +1510,7 @@ input[type="radio"]{
 }
 
 @media screen and (max-width:570px){
-    .box-menu,.admin-box-menu{width:20rem;}
+    .box-menu{width:20rem;}
     .div-menu-image,.menu-image{height:7rem;width:7rem;}
 }
 
@@ -1523,7 +1533,7 @@ input[type="radio"]{
 }
 
 @media screen and (max-width:450px){
-    .box-menu,.admin-box-menu{width:18rem;}
+    .box-menu{width:18rem;min-height:11rem;height:auto;padding:1rem 0.4rem 1rem;}
     .div-menu-image,.menu-image{height:6rem;width:6rem;}
     .business-logo-2{margin-top:3rem;}
     .searchbar{width:10rem;}
@@ -1536,11 +1546,12 @@ input[type="radio"]{
     /*VIEW MENU*/
     .div-for-viewproduct-image-display,.viewproduct-content-box-1{height:15rem;width:15rem;margin:auto;}
     .viewproduct-content-box-1{margin:1rem auto}
+    .btn-menu-1{width:6rem;}
 }
 
 @media screen and (max-width:400px){
-    .box-menu,.admin-box-menu{width:15.6rem;height:12rem;}
-    .menu-status{font-size:0.9rem;width:auto;display:inline-block;}
+    .box-menu{width:15.6rem;}
+    .menu-status{font-size:0.8rem;width:6.5rem;}
     .txt-box-info-email{font-size:0.8rem;}
     .box-shipping-address,.div-for-checkout-edit{display:block;text-align:left;}
 	.btn-checkout{padding:0.6rem 0.5rem;width:93%;}
@@ -1555,12 +1566,12 @@ input[type="radio"]{
 }
 
 @media screen and (max-width:345px){
-    .box-menu,.admin-box-menu{width:12rem;padding-right:0.6rem;}
-    .menu-status{font-size:0.7rem;}
+    .box-menu{width:12rem;padding-right:0.6rem;}
+    .menu-status{font-size:0.6rem;width:5.1rem;}
     .div-menu-image,.menu-image{height:4.5rem;width:4.5rem;}
     .txt-carousel{font-size:1.3rem;}
     .searchbar{width:7rem;}
-    .btn-menu-1{margin-left:0.4rem;}
+    .btn-menu-1{margin-left:0.4rem;font-size:0.6rem;width:5rem;}
     .txt-box-info-email{font-size:0.6rem;}
     .div-for-viewproduct-image-display,.viewproduct-content-box-1{height:13rem;width:13rem;}
 }

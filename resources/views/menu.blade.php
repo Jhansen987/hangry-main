@@ -60,7 +60,7 @@
                     </p>
                     <p class="menu-price">Php {{$product->price}}</p>
                     @if($product->stocks == 0)
-                        <p class="menu-status">OUT OF STOCK</p>
+                        <p class="menu-status">OUT OF STOCK</p><br>
                     @endif
                     <!-- <button class="btn-menu-1">ADD TO CART</button>-->
                     <button class="btn-menu-1" onclick="window.location.href='{{url('viewproduct/'.$product->id)}}';">VIEW MENU</button>

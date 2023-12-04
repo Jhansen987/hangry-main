@@ -60,6 +60,14 @@ Route::get('/about', function (){
 //MANAGE CART
 Route::get('/cart',[CartController::class,'viewCart']);
 Route::get('/cart/add/{id}',[CartController::class,'addCart']);
+Route::get('/cart/delete/{id}',[CartController::class,'deleteCartItem']);
+Route::get('/cart/getTotalCartPrice',[CartController::class,'getTotalCartPrice']);
+Route::post('/cart/update',[CartController::class,'updateCartItems'])->name('updateCart');
+//CHECKOUT PAGE
+Route::get('/checkout',function(){
+    return view('checkout');
+});
+
 
 Route::get('/myorders', function (){
     if(Auth::check() && Auth::user()->account_type == 'customer'){
