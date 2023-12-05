@@ -14,7 +14,7 @@ class ProductController extends Controller
     //
 
     public function displayAllProducts(){
-        $products = Product::latest()->paginate('6');
+        $products = Product::latest()->paginate(6);
         if(Auth::check() && Auth::user()->account_type == 'admin'){
             return view('admin/admin-manageProducts',compact('products'));
         }else if(Auth::check() && Auth::user()->account_type == 'customer'){

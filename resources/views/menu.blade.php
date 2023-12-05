@@ -59,7 +59,7 @@
                     <p class="menu-name">
                         {{$product->product_name}}
                     </p>
-                    <p class="menu-price">Php {{$product->price}}</p>
+                    <p class="menu-price" style="color:red;"><b>&#8369 {{$product->price}}</b></p>
 
                     @if($product->stocks == 0)
                         <p class="menu-status">OUT OF STOCK</p><br>

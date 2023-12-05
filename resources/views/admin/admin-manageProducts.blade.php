@@ -67,7 +67,7 @@
     <td>{{$product->product_name}}</td>
     <td>{{$product->status}}</td>
     <td>{{$product->stocks}}</td>
-    <td>Php {{$product->price}}</td>
+    <td>&#8369 {{$product->price}}</td>
     <td>{{$product->rating}}</td>
   </tr>
 @endforeach

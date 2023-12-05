@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_id')->unique();
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');        
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('username');
+            $table->string('gender');
+            $table->string('email');
+            $table->string('contactnumber');       
             $table->string('shipping_address');
             $table->string('payment_method');
             $table->string('order_status');

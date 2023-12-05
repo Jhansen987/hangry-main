@@ -96,7 +96,7 @@
             @endif
 		</div>
 		<p class="txt-viewproduct-product-price">
-            Php {{$product->price}}
+            &#8369 {{$product->price}}
 		</p>
 		<br>
 		<p class="txt-viewproduct-header">PRODUCT DESCRIPTION</p>

@@ -96,7 +96,7 @@
             @endif
 		</div>
 		<p class="txt-viewproduct-product-price">
-            Php {{$product->price}}
+            &#8369 {{$product->price}}
 		</p>
 		<div class="div-viewproduct-1">
 			<button class="btn-action-viewproduct" onclick="window.location.href='{{url('admin-editProduct/'.$product->id)}}';">Edit Product</button>

@@ -6,6 +6,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
+use App\Models\Order;
+use App\Models\OrderedProduct;
 use App\Models\User;
 use App\Models\Announcement;
 use App\Models\Product;
@@ -58,25 +61,23 @@ Route::get('/about', function (){
 });
 
 //MANAGE CART
-Route::get('/cart',[CartController::class,'viewCart']);
+Route::get('/cart',[CartController::class,'viewCart'])->name('cart');
 Route::get('/cart/add/{id}',[CartController::class,'addCart']);
 Route::get('/cart/delete/{id}',[CartController::class,'deleteCartItem']);
 Route::post('/cart/deleteAll',[CartController::class,'deleteAllCartItems']);
 Route::get('/cart/getTotalCartPrice',[CartController::class,'getTotalCartPrice']);
 Route::post('/cart/update',[CartController::class,'updateCartItems'])->name('updateCart');
+
 //CHECKOUT PAGE
-Route::get('/checkout',function(){
-    return view('checkout');
-});
+Route::get('/checkout',[CartController::class,'viewCheckoutItems']);
 
+//MY ORDERS
+Route::get('/myorders', [OrderController::class,'viewAllMyOrders'])->name('myorders');
 
-Route::get('/myorders', function (){
-    if(Auth::check() && Auth::user()->account_type == 'customer'){
-        return view('myorders'); 
-    }
-    return view('auth/login');
-});
-
+Route::post('/myorders/placeorder',[OrderController::class,'addOrder'])->name('placeOrder');
+Route::get('/vieworder', [OrderController::class,'viewSpecificOrder'])->name('vieworder');
+Route::get('/vieworder/{orderid}', [OrderController::class,'viewSpecificOrder'])->name('vieworder');
+//MANAGE 'MY PROFILE' PAGE
 Route::get('/myprofile', [UserController::class, 'viewUserProfile'])->name('myprofile');
 
 

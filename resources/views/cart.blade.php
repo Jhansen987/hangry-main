@@ -52,7 +52,7 @@
 					<p>{{$cart->product->product_name}}</p>
 				</div>
 				
-				<div class="cart-price-column">Php {{$cart->product->price}}</div>
+				<div class="cart-price-column">&#8369 {{$cart->product->price}}</div>
 				
 				<div class="cart-quantity-column">
 					<div class="div-cart-quantity">
@@ -92,7 +92,7 @@
 				<tr>
 					<td class="txt-order-details" width="45%">SUBTOTAL:</td>
 					<td class="txt-order-details-2">
-						PHP 
+						&#8369 <!--Philippine Peso sign-->
 						<span id="subtotal">
 							<?php echo number_format((float)$totalCartPrice,2) ?>
 						</span>
@@ -108,7 +108,7 @@
 				<tr>
 					<td class="txt-order-details-3" width="23%">TOTAL</td>
 					<td class="txt-order-details-4">
-						<b>PHP 
+						<b>&#8369 
 							<span id="totalCartPrice">
 								<?php echo number_format((float)$totalCartPrice,2) ?>
 							</span>
@@ -142,7 +142,7 @@
 	}
 
 	function checkInputValue(inputQuantityField,maxStocksAvailable) {
-    if (inputQuantityField.value === '0') { //prevents 0 quantity input..
+    if (inputQuantityField.value === '0' || inputQuantityField.value === '') { //prevents 0 quantity input..
     	inputQuantityField.value = 1;
     }else if(inputQuantityField.value > maxStocksAvailable){ 
 		//if user's input is more than the number of available stocks for the product, 

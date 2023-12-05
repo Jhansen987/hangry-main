@@ -34,8 +34,36 @@ class CartController extends Controller
         }
     }
 
-    public function addCart($id){
+    public function viewCheckoutItems(){
+        if(Auth::check() && Auth::user()->account_type == 'customer'){
+            $carts = Cart::where('username',Auth::user()->username)->with('product')->get();
+            if($carts->isNotEmpty()){
+                $totalCartPrice = 0;
+                foreach($carts as $cart){
+                    if($cart->product->stocks == 0){
+                        Cart::find($cart->id)->delete();
+                        continue;
+                    }else if($cart->quantity > $cart->product->stocks){
+                        $cart->update([
+                            'quantity' => $cart->product->stocks
+                        ]);
+                    }
 
+                    $totalItemPrice = $cart->product->price * $cart->quantity;
+                    $totalCartPrice = $totalCartPrice + $totalItemPrice;
+                }
+                return view('checkout',compact('carts','totalCartPrice')); 
+            }else{
+                return Redirect()->route('cart');
+            }
+        }else{
+            return view('auth/login');
+        }
+    }
+
+
+    public function addCart($id){
+        if(Auth::check() && Auth::user()->account_type == 'customer'){
             $product = Product::find($id);
             $cart = Cart::where('username',Auth::user()->username)
                     ->where('product_id',$id)->with('product')->first();
@@ -61,6 +89,9 @@ class CartController extends Controller
             return response()->json([
                 'success' => "The item has been successfully added to your cart!"
             ]);
+        }else{
+            return view('auth/login');
+        }
     }
 
     public function deleteCartItem($id){

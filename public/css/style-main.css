@@ -365,7 +365,7 @@ body{
     text-overflow: ellipsis;
 }
 
-.menu-price,.menu-status{
+.menu-price,.menu-status,.menu-status-2{
     height:auto;
     font-size:1rem;
     font-weight:normal;
@@ -374,16 +374,18 @@ body{
     /* background:red; */
 }
 
-.menu-status{
+.menu-status,.menu-status-2{
     font-weight:bold;
     color:#fff;
     background-color:#f82e23;
     font-size:0.9rem;
     padding:0.3rem 0.4rem;
     margin-left:0.5rem;
+    margin-bottom:-0.8rem;
     border-radius:1rem;
     width:7.3rem;
 }
+.menu-status-2{margin-bottom:0;}
 
 .btn-menu-1{
     border:none;
@@ -1226,20 +1228,20 @@ input[type="radio"]{
     text-align:center;
     border-radius:0.4rem;
     width:13rem;
-    height:20.3rem;
+    height:26rem;
     margin:1rem 0.5rem 0.5rem 1rem;
     display:inline-block;
     padding:0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
-.admin-box-order{height:27rem;}
+.admin-box-order{height:28.1rem;}
 .box-customer{height:15.7rem;}
 
 .box-order-id,.box-customer-username{
     height:3.7rem;
     width:100%;
-    background-color:#e19609;
+    background-color:#e1441e;
     margin:0;
     font-weight:bold;
     color:#fff;
@@ -1271,6 +1273,11 @@ input[type="radio"]{
     color:#535554;
     font-size:0.8rem;
     font-weight:normal;
+    padding:0 0.7rem;
+    display:inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .btn-box-order{
@@ -1278,15 +1285,16 @@ input[type="radio"]{
     border:none;
     border-radius:0.4rem;
     color:#fff;
-    background-color:#e19609;
+    background-color:#e1441e;
     padding:0.4rem;
     font-size:1rem;
     margin:1.1rem auto 0;
     cursor:pointer;
 }
 
-.btn-box-order:hover,.btn-add-menu:hover,
+.btn-add-menu:hover,
 .btn-vieworder-action:hover{background-color:#f6a711;}
+.btn-box-order:hover{background-color:#e45634;}
 
 /* CSS FOR VIEW ORDER PAGE (It has some class from Checkout Page */
 .box-info-3{
@@ -1294,6 +1302,7 @@ input[type="radio"]{
     width:auto;
     height:auto;
     margin:0.5rem 3rem 0 1rem;
+    vertical-align:top;
 }
 
 .content-box-7{text-align:left;}
@@ -1551,7 +1560,7 @@ input[type="radio"]{
 
 @media screen and (max-width:400px){
     .box-menu{width:15.6rem;}
-    .menu-status{font-size:0.8rem;width:6.5rem;}
+    .menu-status,.menu-status-2{font-size:0.8rem;width:6.5rem;}
     .txt-box-info-email{font-size:0.8rem;}
     .box-shipping-address,.div-for-checkout-edit{display:block;text-align:left;}
 	.btn-checkout{padding:0.6rem 0.5rem;width:93%;}
@@ -1567,7 +1576,7 @@ input[type="radio"]{
 
 @media screen and (max-width:345px){
     .box-menu{width:12rem;padding-right:0.6rem;}
-    .menu-status{font-size:0.6rem;width:5.1rem;}
+    .menu-status,.menu-status-2{font-size:0.6rem;width:5.1rem;}
     .div-menu-image,.menu-image{height:4.5rem;width:4.5rem;}
     .txt-carousel{font-size:1.3rem;}
     .searchbar{width:7rem;}
