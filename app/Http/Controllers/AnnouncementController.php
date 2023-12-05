@@ -13,11 +13,20 @@ class AnnouncementController extends Controller
     public function viewAnnouncements(){
         $announcements = Announcement::latest()->paginate('5');
         if(Auth::check() && Auth::user()->account_type == 'admin'){
-            return view('admin/admin-manageAnnouncements',compact('announcements'));
+            return view('admin/admin-home');
         }else if(Auth::check() && Auth::user()->account_type == 'customer'){
             return view('home',compact('announcements'));
         }else{
             return view('guest-home',compact('announcements'));
+        }
+    }
+
+    public function adminViewAnnouncements(){ //exclusively for admin side..
+        $announcements = Announcement::latest()->paginate('5');
+        if(Auth::check() && Auth::user()->account_type == 'admin'){
+            return view('admin/admin-manageAnnouncements',compact('announcements'));
+        }else{
+            return view('auth/login');
         }
     }
 
@@ -56,4 +65,5 @@ class AnnouncementController extends Controller
         $announcementData->delete();
         return Redirect()->route('admin-manageAnnouncements')->with(['success'=>'Announcement Removed Successfully!']);
     }
+    
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>View Order | Hangry</title>
+        <title>My Orders | Hangry</title>
     </head>
 <body class="orange-background">
 <div class="main-body-content">

@@ -170,14 +170,16 @@ body{
 }
 
 .home-title-header-1,.home-title-header-2{
-    width:100%;
+    width:90%;
     margin-top:2.5rem;
+    margin-left:auto;
+    margin-right:auto;
     font-size:2rem;
     font-weight:bold;
     color:#b33a00;
     /* color:#ca7901; */
     text-align:center;
-    line-height:1.1;
+    line-height:1.4;
     /* background:pink; */
 }
 
@@ -299,7 +301,7 @@ body{
 }
 .btn-action-general-2:hover{background-color:#b33a00;color:#fff;}
 
-.position-absolute-message-1{
+.position-absolute-message-1,.position-absolute-message-2{
     position:absolute;
     height:auto;
     padding:0.2rem 0.4rem;
@@ -312,8 +314,11 @@ body{
     font-size:0.7rem;
     display:none;
 }
+.position-absolute-message-2{margin:-1.5rem 0 0 2rem;}
+
 .edit-msg{margin-left:-2.7rem;}
 .btn-action-general-1:hover .position-absolute-message-1{display:block;}
+
 .menu-table{
     display:table;
     width:100%;
@@ -814,6 +819,19 @@ a.back-hyperlink{
     border:3px solid #deaa30;
 }
 
+.div-for-no-items-found{
+    height:20rem;
+    border-radius:0.4rem;
+    font-size:1.5rem;
+    font-weight:bold;
+    color:#e37127;
+    max-width:71rem;
+    width:90%;
+    margin:3rem auto;
+    text-align:center;
+    background-color:transparent;
+}
+
 /*CSS FOR CART PAGE */
 .general-empty-image{
     margin:4rem auto 0;
@@ -856,8 +874,6 @@ a.back-hyperlink{
 .txt-order-details-3,.txt-order-details-4{color:#d92e26;}
 .txt-no-item{color:#2c60d3;font-size:1.3rem;}
 .txt-note{font-size:0.8rem;color:#626261;margin:0 auto 0.5rem auto;width:90%;}
-
-
 
 .content-box-main-header{
 	height:1.8rem;
@@ -1305,7 +1321,7 @@ input[type="radio"]{
     vertical-align:top;
 }
 
-.content-box-7{text-align:left;}
+.content-box-7{text-align:left;padding-bottom:1rem;}
 
 .btn-vieworder-action{
     border-radius:0.4rem;
@@ -1408,8 +1424,104 @@ input[type="radio"]{
     padding:0.4rem;
     margin:0.5rem auto 0.25rem;
 }
+.red-txt{color:#e95116;}
+.btn-action-general-3:hover{background-color:#e6e5e5;}
+.btn-action-general-3:hover .position-absolute-message-2{display:block;}
 
 .btn-icons-3{height:1.4rem;width:1.4rem;}
+
+/*MANAGE ORDERS - CLASS FOR AVAILABLE ACTION BUTTONS*/
+.btn-available-action{
+    display:inline-block;
+    margin:0.5rem 0 0 0.5rem;
+    width:auto;
+    height:auto;
+    padding:0.4rem;
+    color:#fff;
+    font-size:0.9rem;
+    text-align:center;
+    background-color:#e95116;
+    border:none;
+    border-radius:0.4rem;
+    text-decoration:none;
+}
+
+/*CSS FOR DELIVERY FEE AND DATE OF DELIVERY POPUP*/
+.black-screen-3{
+	z-index:2;
+	min-height:100vh;
+	width:100%;
+	background-color:rgba(0,0,0,0.5);
+	position:fixed;
+	opacity:0;
+	transition:visibility 0s, opacity 0.2s;
+	visibility:hidden;
+	text-align:center;
+}
+
+.fade-in-2{
+	opacity:1;
+	visibility:visible;
+}
+
+.box-popup-1,.box-popup-2,.box-popup-3{
+	height:auto;
+	width:90%;
+	max-width:25rem;
+	background-color:#fff;
+	margin:11rem auto;
+	text-align:left;
+	padding:0 0 0.3rem;
+	border-radius:0.3rem;
+	overflow:hidden;
+	display:none;
+}
+
+.content-box-header{
+    color:#fff;
+	text-align:left;
+	background-color:#e22f14;
+	padding:0.3rem 0.4rem;
+	height:2.2rem;
+	font-size:1rem;
+}
+
+.popup-label-1{
+    font-size:0.9rem;
+    font-weight:bold;
+    margin-left:0.8rem;
+    color:#474646;
+}
+.btn-popup,.btn-popup-2{
+	width:auto;
+	color:#fff;
+	font-size:0.8rem;
+	background-color:#e22f14;
+	border-radius:0.3rem;
+	cursor:pointer;
+	border:none;
+    height:1.9rem;
+    float:right;
+    margin:-0.1rem -0.1rem 0 0;
+    padding:0 0.7rem;
+}
+
+.btn-popup-2{margin:auto;float:none;display:block;width:97%;}
+.btn-popup:hover,.btn-popup-2:hover{background-color:#ed4c33;}
+.delivery-fee-field{
+    width:95% !important;
+    margin:0.4rem auto 0 !important;
+    text-align:left !important;
+    padding:0.4rem;
+    font-size:0.9rem;
+    display:block;
+    border:1px solid #474646 !important;
+}
+
+input[type="date"]:focus,.delivery-fee-field:focus{
+    outline:none !important;
+	border:2px solid red  !important;
+}
 
 @media screen and (max-width:1350px){
     .box-menu{margin:0.4rem 0 0.4rem 2rem;}
@@ -1532,7 +1644,7 @@ input[type="radio"]{
     .viewproduct-content-box-2{width:85%}
     .home-title-header-1{font-size:1.4rem;}
     .col-announcement-2{font-size:0.8rem;}
-    .div-for-general-table{width:85%;margin:0.4rem auto;}
+    .div-for-general-table{width:85%;margin:1.5rem auto;}
 }
 
 @media screen and (max-width:500px){

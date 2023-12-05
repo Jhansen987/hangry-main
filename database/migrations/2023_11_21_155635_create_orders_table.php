@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('order_status');
             $table->string('payment_status');
             $table->date('delivery_date')->nullable();
+            $table->decimal('subtotal',13,2)->unsigned();
+            $table->decimal('shipping_fee',5,2)->unsigned()->nullable();
             $table->decimal('grand_total', 13, 2)->unsigned();
             $table->timestamps();
         });

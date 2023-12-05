@@ -44,13 +44,13 @@
                 </a>
                 <ul>
                     <li><a href="{{route('admin-manageProducts')}}">Menus</a></li>
-                    <li><a href="#">Orders</a></li>
+                    <li><a href="{{route('admin-manageOrders')}}">Orders</a></li>
                     <li><a href="#">Customers</a></li>
                     <li><a href="{{route('admin-manageAnnouncements')}}">Announcements</a></li>
                     <li><a href="#">FAQs</a></li>
                 </ul>
             </li>
-            <li><a href="admin-about.php">ABOUT</a></li>
+            <li><a href="{{route('admin-about')}}">ABOUT</a></li>
             <li>
                 <a href="#">OTHERS
                     <img src="{{asset('icons/down-arrow-white-icon.svg')}}" alt="" class="header-icons-2">
@@ -76,7 +76,7 @@
     </div>
     <ul>
         <li><a href="{{url('admin-home')}}">Home</a></li>   
-        <li><a href="admin-about.php">About</a></li>
+        <li><a href="{{route('admin-about')}}">About</a></li>
     </ul>
     <button id="mobile-subdropdown-btn-1" class="btn-mobile-nav-link" onclick="adminResponsiveSubDropdown1()">
         Manage
@@ -85,7 +85,7 @@
     <div id="mobile-subdropdown-1" class="mobile-nav-subdropdown">
         <ul>
             <li><a href="{{route('admin-manageProducts')}}">Menus</a></li>
-            <li><a href="#">Orders</a></li>
+            <li><a href="{{route('admin-manageOrders')}}">Orders</a></li>
             <li><a href="#">Customers</a></li>
             <li><a href="{{route('admin-manageAnnouncements')}}">Announcements</a></li>
             <li><a href="#">FAQs</a></li>

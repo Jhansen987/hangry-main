@@ -22,6 +22,8 @@ class Order extends Model
         'order_status',
         'payment_status',
         'delivery_date',
+        'subtotal',
+        'shipping_fee',
         'grand_total'
     ];
 }

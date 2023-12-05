@@ -75,8 +75,9 @@ Route::get('/checkout',[CartController::class,'viewCheckoutItems']);
 Route::get('/myorders', [OrderController::class,'viewAllMyOrders'])->name('myorders');
 
 Route::post('/myorders/placeorder',[OrderController::class,'addOrder'])->name('placeOrder');
-Route::get('/vieworder', [OrderController::class,'viewSpecificOrder'])->name('vieworder');
 Route::get('/vieworder/{orderid}', [OrderController::class,'viewSpecificOrder'])->name('vieworder');
+Route::get('/vieworder/customercancelorder/{orderid}', [OrderController::class,'cancelOrder'])->name('vieworder'); //cancel order from customer side
+
 //MANAGE 'MY PROFILE' PAGE
 Route::get('/myprofile', [UserController::class, 'viewUserProfile'])->name('myprofile');
 
@@ -103,8 +104,16 @@ Route::get('/admin-home', function () {
     }
 });
 
+Route::get('/admin-about', function () {
+    if(Auth::check() && Auth::user()->account_type == 'admin'){
+        return view('admin/admin-about');
+    }else{
+        return view('auth/login');
+    }
+})->name('admin-about');
+
 //Manage Announcements
-Route::get('/admin-manageAnnouncements',[AnnouncementController::class,'viewAnnouncements'])->name('admin-manageAnnouncements');
+Route::get('/admin-manageAnnouncements',[AnnouncementController::class,'adminViewAnnouncements'])->name('admin-manageAnnouncements');
 
 Route::get('/admin-addAnnouncement', function () {
     if(Auth::check() && Auth::user()->account_type == 'admin'){
@@ -138,5 +147,17 @@ Route::get('/admin-viewProduct/{id}', [ProductController::class, 'viewProduct'])
 //Manage Customers
 
 //Manage Orders
+Route::get('/admin-manageOrders',[OrderController::class,'viewAllCustomerOrders'])->name('admin-manageOrders');
+Route::get('/admin-viewOrder/{orderid}',[OrderController::class,'viewSpecificOrder']);
+Route::post('admin-viewOrder/deliveryfee',[OrderController::class,'setDeliveryFee'])->name('setdeliveryfee');//set order's delivery / shipping fee
+Route::post('admin-viewOrder/deliverydate',[OrderController::class,'setDeliveryDate'])->name('setdeliverydate');//set order's delivery date
+Route::post('admin-viewOrder/editdeliverydate',[OrderController::class,'editDeliveryDate'])->name('editdeliverydate');//edit order's delivery date
+
+Route::get('/admin-viewOrder/pending/{id}',[OrderController::class,'setOrderStatusToPending']); //set order status back to "Pending"
+Route::get('/admin-viewOrder/readyForOnsitePayment/{id}',[OrderController::class,'setOrderStatusToReadyForOnsitePayment']); //set order status to "Ready for Onsite Payment"
+Route::get('/admin-viewOrder/processing/{id}',[OrderController::class,'setOrderStatusToProcessing']); //set order status to 'Processing'
+Route::get('/admin-viewOrder/delivered/{id}',[OrderController::class,'setOrderStatusToDelivered']); //set order status to 'Delivered'
+Route::get('/admin-viewOrder/shipped/{id}',[OrderController::class,'setOrderStatusToShipped']); //set order status to 'Shipped'
+Route::get('/admin-viewOrder/cancelorder/{id}',[OrderController::class,'cancelOrder']); //Permanently Cancel an Order..
 
 //Manage Sales Report

@@ -17,8 +17,8 @@
 		</ul>
 		<div class="div-carousel-content-box">
             <img src="images/Hangry Logo.png" alt="" class="business-logo-2">
-			<p class="txt-carousel">
-            Welcome Administrator!
+			<p class="txt-carousel" style="margin-top:2rem;">
+            Welcome Administrator, we hope that you are having a pleasant day!
 			</p>
 		</div>
 	</div>

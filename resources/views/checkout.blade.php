@@ -74,9 +74,11 @@
 	  				<label for="onsite-payment" class="label-payment-option">Cash on Delivery</label><br>
 					<p class="txt-payment-option-details">
 						Pay the amount of your order to one of our person assigned for delivering the product
-						to your shipping address. <br>
+						to your shipping address. Wait for the Administrator to set a shipping fee for your order,
+						depending on your shipping address. You have the option to cancel your order for as long
+						as your order is not being shipped yet.<br><br>
 						
-						<span style="color:red;"><b>NOTE:</b> We only deliver within Metro Manila, if your shipping address is
+						<span style="color:red;"><b>IMPORTANT NOTE:</b> We only deliver orders within Metro Manila, if your shipping address is
 						outside Metro Manila, the Hangry team will cancel your order.</span>
 					</p>
 				</div><br><br><br>

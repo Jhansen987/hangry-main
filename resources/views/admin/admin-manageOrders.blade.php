@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Products | Hangry</title>
+    <title>Manage Orders | Hangry</title>
 </head>
 <body class="orange-background-admin">
 @if(session('success'))
-
 <div class="toast-container position-fixed top-0 p-3" style="width:100%;">
   <div id="liveToast" class="toast" style="margin:auto;background-color:#fff;" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header" style="background-color:#dbdadb;">
@@ -31,48 +30,56 @@
 @endif
 
 <div class="home-title-header-1 body-margin-top">
-    Manage Menus<br>
-    <button class="btn-action-general-2" onclick="window.location.href='{{url('admin-addProduct')}}';">+ Add New Menu</button>
+    Manage Orders<br>
 </div>
 <div class="div-for-general-table">
 <table class="general-table">
 
   <tr>
-    <th width="8%">Actions</th>
-    <th width="12%">Product Image</th>
-    <th width="30%">Name</th>
-    <th width="12%">Status</th>
-    <th width="13%">Stocks</th>
-    <th width="15%">Price</th>
-    <th width="10%">Ratings</th>
+    <th width="5%">Actions</th>
+    <th width="8%">Order ID</th>
+    <th width="15%">Date Ordered</th>
+    <th width="12%">Customer Name</th>
+    <th width="13%">Price to Pay</th>
+    <th width="10%">Payment Method</th>
+    <th width="11%">Order Status</th>
+    <th width="11%">Payment Status</th>
+    <th width="15%">Delivery Date</th>
   </tr>
 
-@foreach($products as $product)
+  @foreach($orders as $order)
+
   <tr>
     <td>
-      <button class="btn-action-general-3" onclick="window.location.href='{{url('admin-viewProduct/'.$product->id)}}';">
+        <button class="btn-action-general-3" onclick="window.location.href='{{url('admin-viewOrder/'.$order->order_id)}}';">
         <img src="../icons/eye-orange-icon.svg" class="btn-icons-3">
-        <p class="position-absolute-message-2">View Product</p>
-      </button>
-      <button class="btn-action-general-3" onclick="window.location.href='{{url('admin-editProduct/'.$product->id)}}';">
-        <img src="../icons/edit-orange-icon.svg" class="btn-icons-3">
-        <p class="position-absolute-message-2">Edit</p>
-      </button>
-      <button class="btn-action-general-3">
-        <img src="../icons/trash-orange-icon.svg" class="btn-icons-3">
-        <p class="position-absolute-message-2">Delete</p>
+        <p class="position-absolute-message-2">View Details</p>
       </button>
     </td>
-    <td><img src = "{{asset('storage/'.$product->product_image_path)}}" alt="" class="small-prod-image"></td>
-    <td>{{$product->product_name}}</td>
-    <td>{{$product->status}}</td>
-    <td>{{$product->stocks}}</td>
-    <td>Php {{$product->price}}</td>
-    <td>{{$product->rating}}</td>
+    <td style="color:red;"><b>{{$order->order_id}}</b></td>
+    <td>
+        {{$order->created_at->format('F d, Y')}}<br>
+        {{$order->created_at->format('g:i a')}}
+    </td>
+    <td>{{$order->firstname}} {{$order->lastname}}</td>
+    <td>Php {{$order->grand_total}}</td>
+    <td>{{$order->payment_method}}</td>
+    <td>{{$order->order_status}}</td>
+    <td>{{$order->payment_status}}</td>
+    <td>
+        @if($order->delivery_date === null)
+            None
+        @else
+            {{$order->delivery_date->format('F d, Y')}}
+        @endif
+    </td>
   </tr>
-@endforeach
+
+  @endforeach
+
 </table>
 </div>
+<div style="height:1rem;width:100%;margin-top:10rem;"></div>
 @include ('../footers.admin-footer')
 </body>
 </html>
