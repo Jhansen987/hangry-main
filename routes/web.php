@@ -61,6 +61,7 @@ Route::get('/about', function (){
 Route::get('/cart',[CartController::class,'viewCart']);
 Route::get('/cart/add/{id}',[CartController::class,'addCart']);
 Route::get('/cart/delete/{id}',[CartController::class,'deleteCartItem']);
+Route::post('/cart/deleteAll',[CartController::class,'deleteAllCartItems']);
 Route::get('/cart/getTotalCartPrice',[CartController::class,'getTotalCartPrice']);
 Route::post('/cart/update',[CartController::class,'updateCartItems'])->name('updateCart');
 //CHECKOUT PAGE

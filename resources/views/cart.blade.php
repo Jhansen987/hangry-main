@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="csrf-token" content="{{csrf_token()}}">
+		<meta name="csrf-token" content="{{csrf_token()}}"> <!--Needed for Javascript AJAX form submissions-->
         <title>My Cart | Hangry</title>
         <link rel="stylesheet" href="css/style-main.css">
     </head>
@@ -79,8 +79,11 @@
 		<div class="content-box-2">
 			<div class="content-box-main-header">CART ACTIONS</div><br>
 			<p class="txt-note">Whenever you change the quantities of your products, always click on <b>UPDATE CART</b> to save your changes.</p>
-			<button class="btn-danger" id="btn-update-cart">UPDATE CART</button> <!-- btn-cart-1 class -->
-			<button class="btn-danger">REMOVE ALL</button>
+			<button class="btn-cart-full-width" id="btn-update-cart">UPDATE CART</button> <!-- btn-cart-1 class -->
+			<form action="{{url('cart/deleteAll')}}" method="POST">
+				@csrf
+				<button type="submit" class="btn-cart-full-width">REMOVE ALL</button>
+			</form>
 		</div>
 	
 		<div class="content-box-2">

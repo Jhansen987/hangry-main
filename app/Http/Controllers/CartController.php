@@ -35,25 +35,32 @@ class CartController extends Controller
     }
 
     public function addCart($id){
-        $cart = Cart::where('username',Auth::user()->username)
-                ->where('product_id',$id)->with('product')->first();
 
-        if($cart === null){
-            $cart = Cart::create([
-                'username' => Auth::user()->username,
-                'product_id' => $id,
-                'quantity' => 1
-            ]);
-        }else{
-            $currentItemQuantity = $cart->quantity + 1;
-            $cart->update([
-                'quantity' => $currentItemQuantity
-            ]);
-        }
+            $product = Product::find($id);
+            $cart = Cart::where('username',Auth::user()->username)
+                    ->where('product_id',$id)->with('product')->first();
 
-        if($cart){
-            return Redirect()->back()->with(['success'=>'Item added to your cart successfully!']);
-        }
+            if($cart === null){
+                $cart = Cart::create([
+                    'username' => Auth::user()->username,
+                    'product_id' => $id,
+                    'quantity' => 1
+                ]);
+            }else{
+                if($cart->quantity > $product->stocks){
+                    $currentItemQuantity = $product->stocks;
+                }else{
+                    $currentItemQuantity = $cart->quantity + 1;
+                }
+                
+                $cart->update([
+                    'quantity' => $currentItemQuantity
+                ]);
+            }
+
+            return response()->json([
+                'success' => "The item has been successfully added to your cart!"
+            ]);
     }
 
     public function deleteCartItem($id){
@@ -62,6 +69,11 @@ class CartController extends Controller
             return Redirect()->back()->with(['success'=>'Item has been successfully removed from your cart!']);
         }
 
+    }
+
+    public function deleteAllCartItems(){
+        $deleteAll = Cart::where('username', Auth::user()->username)->delete();
+        return Redirect()->back()->with(['success'=>'All items have been successfully removed from your cart!']);
     }
 
     public function updateCartItems(Request $request){
@@ -92,16 +104,5 @@ class CartController extends Controller
         ]);
     }
 
-    // public function getTotalCartPrice(){
-    //     $carts = Cart::where('username',Auth::user()->username)->with('product')->get();
-    //     $totalCartPrice = 0;
-    //     foreach($carts as $cart){
-    //         $totalItemPrice = $cart->quantity * $cart->product->price;
-    //         $totalCartPrice += $totalItemPrice;
-    //     }
-
-    //     return response()->json([
-    //         'cartTotalPrice' => $totalCartPrice
-    //     ]);
-    // }
+    
 }
