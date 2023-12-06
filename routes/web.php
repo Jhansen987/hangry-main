@@ -55,9 +55,17 @@ Route::get('/viewproduct/{id}', [ProductController::class,'viewProduct']);
 
 Route::get('/about', function (){
     if(Auth::check() && Auth::user()->account_type == 'customer'){
-        return view('about'); 
+        if(Auth::user()->account_status == 'active'){
+            return view('about');
+        }else{
+            Auth::logout();
+            session()->flash('success','Your account has been blocked by the Administrator.');
+            return view('auth/login');
+        }
+    }else{
+        Auth::logout();
+        return view('guest-about');
     }
-    return view('guest-about');
 });
 
 //MANAGE CART
@@ -100,6 +108,7 @@ Route::get('/admin-home', function () {
     if(Auth::check() && Auth::user()->account_type == 'admin'){
         return view('admin/admin-home');
     }else{
+        Auth::logout();
         return view('auth/login');
     }
 });
@@ -108,6 +117,7 @@ Route::get('/admin-about', function () {
     if(Auth::check() && Auth::user()->account_type == 'admin'){
         return view('admin/admin-about');
     }else{
+        Auth::logout();
         return view('auth/login');
     }
 })->name('admin-about');
@@ -119,6 +129,7 @@ Route::get('/admin-addAnnouncement', function () {
     if(Auth::check() && Auth::user()->account_type == 'admin'){
         return view('admin/admin-addAnnouncement');
     }else{
+        Auth::logout();
         return view('auth/login');
     }
 });
@@ -131,7 +142,12 @@ Route::post('/admin-manageAnnouncements/delete',[AnnouncementController::class, 
 
 //Manage Products
 Route::get('/admin-addProduct',function(){
-    return view("admin/admin-addProduct");
+    if(Auth::check() && Auth::user()->account_type == 'admin'){
+        return view("admin/admin-addProduct");
+    }else{
+        Auth::logout();
+        return view('auth/login');
+    }
 })->name('admin-addProduct');
 
 
@@ -144,7 +160,6 @@ Route::get('/admin-manageProducts',[ProductController::class,'displayAllProducts
 Route::post('/admin-manageProducts/add',[ProductController::class, 'createProduct'])->name('addProduct');
 
 Route::get('/admin-viewProduct/{id}', [ProductController::class, 'viewProduct'])->name('admin-viewproduct');
-//Manage Customers
 
 //Manage Orders
 Route::get('/admin-manageOrders',[OrderController::class,'viewAllCustomerOrders'])->name('admin-manageOrders');
@@ -160,4 +175,11 @@ Route::get('/admin-viewOrder/delivered/{id}',[OrderController::class,'setOrderSt
 Route::get('/admin-viewOrder/shipped/{id}',[OrderController::class,'setOrderStatusToShipped']); //set order status to 'Shipped'
 Route::get('/admin-viewOrder/cancelorder/{id}',[OrderController::class,'cancelOrder']); //Permanently Cancel an Order..
 
+//Manage Customers
+Route::get('/admin-manageCustomers',[UserController::class,'viewAllCustomers'])->name('admin-manageCustomers');
+Route::get('/admin-viewCustomer/{id}',[UserController::class,'viewCustomerProfile'])->name('admin-viewCustomer');
+
+Route::get('/admin-viewCustomer/blockCustomer/{id}',[UserController::class,'blockUser'])->name('admin-blockCustomer'); //block a customer account
+Route::get('/admin-viewCustomer/unblockCustomer/{id}',[UserController::class,'unblockUser'])->name('admin-unblockCustomer'); //unblock a customer account
 //Manage Sales Report
+

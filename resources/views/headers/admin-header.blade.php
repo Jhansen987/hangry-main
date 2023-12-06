@@ -45,7 +45,7 @@
                 <ul>
                     <li><a href="{{route('admin-manageProducts')}}">Menus</a></li>
                     <li><a href="{{route('admin-manageOrders')}}">Orders</a></li>
-                    <li><a href="#">Customers</a></li>
+                    <li><a href="{{route('admin-manageCustomers')}}">Customers</a></li>
                     <li><a href="{{route('admin-manageAnnouncements')}}">Announcements</a></li>
                     <li><a href="#">FAQs</a></li>
                 </ul>
@@ -86,7 +86,7 @@
         <ul>
             <li><a href="{{route('admin-manageProducts')}}">Menus</a></li>
             <li><a href="{{route('admin-manageOrders')}}">Orders</a></li>
-            <li><a href="#">Customers</a></li>
+            <li><a href="{{route('admin-manageCustomers')}}">Customers</a></li>
             <li><a href="{{route('admin-manageAnnouncements')}}">Announcements</a></li>
             <li><a href="#">FAQs</a></li>
         </ul>   

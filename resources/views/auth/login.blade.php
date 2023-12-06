@@ -4,11 +4,13 @@
             <a href="{{url('/home')}}"><img src="images/hangry-logo-orange-bg.png" style="border-radius:50%;height:100px;margin-top:40px;"></a>
         </x-slot>
 
-        <!-- @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600" style="text-align:center;">
-                {{ session('status') }}
-            </div>
-        @endif -->
+        @if(session('success'))
+            <script>
+                const audio = new Audio("{{asset('sounds/alert-sound.mp3')}}");
+                audio.play();
+                alert("{{session('success')}}");
+            </script>
+        @endif
 
         <div class="mt-4" style="margin-bottom:30px;border-bottom:1px solid #8a878b;">
                 <p style="font-size:20px;color:#555356;text-align:center;"><b>LOGIN</b></p>

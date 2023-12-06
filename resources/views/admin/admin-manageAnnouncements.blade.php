@@ -38,6 +38,7 @@
       <img src="{{asset('icons/three-dots-red.svg')}}" alt="" style="margin-top:2rem;height:5rem;width:5rem;"><br>
       You have no announcements in the website.
   </div>
+  <div style="height:1rem;width:100%;"></div>
 @else
   <br><br>
   @foreach ($announcements as $announcement)
@@ -66,8 +67,8 @@
       </div>
   </div>
   @endforeach
+  <div style="height:1rem;width:100%;margin-top:13rem;"></div>
 @endif
-<div style="height:1rem;width:100%;margin-top:16rem;"></div>
 @include ('../footers.admin-footer')
 </body>
 </html>

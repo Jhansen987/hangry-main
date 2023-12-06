@@ -4,8 +4,8 @@
     <head>
         <title>My Profile | Hangry</title>
     </head>
-<body class="orange-background">
-<div class="main-body-content-2" style="padding-top:3rem;">
+<body class="orange-background-admin">
+<div class="main-body-content-2 orange-background-admin" style="padding-top:3rem;">
     <div class="dashboard-header">
         @if(Auth::user()->profile_photo_path == null)
             <img src="{{asset('images/default-userpic.jpg')}}" class="myprofile-picture">
