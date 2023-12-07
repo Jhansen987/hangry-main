@@ -115,11 +115,12 @@
                         @break
                     
                     @case("Ready for Onsite Payment")
+						<a href="{{ route('viewReceipt', ['id' => $order->id]) }}" target="_blank" class="btn-available-action">View Bill</a>
                         <button onclick="window.location.href='customercancelorder/{{$order->id}}';" class="btn-available-action">Cancel Order</button>
                         @break
                     
                     @case("Delivered")
-                        <a href="#" target="_blank" class="btn-available-action">View Receipt</a>
+					<a href="{{ route('viewReceipt', ['id' => $order->id]) }}" target="_blank" class="btn-available-action">View Receipt</a>
                         @break
                     @case("Cancelled")
                         <br>
@@ -149,7 +150,7 @@
                         @break
 
                     @case("Delivered")
-                        <a href="viewreceipt/{{$order->id}}" target="_blank" class="btn-available-action">View Receipt</a>
+                        <a href="{{ route('viewReceipt', ['id' => $order->id]) }}" target="_blank" class="btn-available-action">View Receipt</a>
                         @break
 
                     @case("Cancelled")

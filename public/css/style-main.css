@@ -1554,6 +1554,28 @@ input[type="date"]:focus,.delivery-fee-field:focus{
 	border:2px solid red  !important;
 }
 
+/* CSS FOR SALES REPORT */
+.sales-report-header{
+    margin-bottom:2rem;
+}
+
+.div-for-google-chart-display{
+    margin:auto;
+    height:25rem;
+    text-align:center;
+    width:90%;
+    background-color:green;
+    max-width:67rem;
+    border-radius:0.4rem;
+    overflow-y:hidden;
+    overflow-x:auto;
+}
+
+.chart-display{
+    height:100%;
+    width:100%;
+}
+
 @media screen and (max-width:1350px){
     .box-menu{margin:0.4rem 0 0.4rem 2rem;}
 }

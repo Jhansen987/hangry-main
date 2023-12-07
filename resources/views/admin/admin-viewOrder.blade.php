@@ -205,10 +205,11 @@
                         <button onclick="window.location.href='delivered/{{$order->id}}';" class="btn-available-action">Set Order Status to <b>DELIVERED</b></button>
                         <button onclick="window.location.href='pending/{{$order->id}}';" class="btn-available-action">Set Order Status back to <b>PENDING</b></button>
                         <button onclick="window.location.href='cancelorder/{{$order->id}}';" class="btn-available-action">Cancel Order</button>
+						<a href="{{ route('admin-viewReceipt', ['id' => $order->id]) }}" target="_blank" class="btn-available-action">View Bill</a>
                         @break
                     
                     @case("Delivered")
-                        <a href="#" target="_blank" class="btn-available-action">View Receipt</a>
+						<a href="{{ route('admin-viewReceipt', ['id' => $order->id]) }}" target="_blank" class="btn-available-action">View Receipt</a>
                         @break
                     @case("Cancelled")
                         <br>
@@ -244,7 +245,7 @@
                         @break
 
                     @case("Delivered")
-                        <a href="#" target="_blank" class="btn-available-action">View Receipt</a>
+					<a href="{{ route('admin-viewReceipt', ['id' => $order->id]) }}" target="_blank" class="btn-available-action">View Receipt</a>
                         @break
 
                     @case("Cancelled")

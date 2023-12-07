@@ -277,19 +277,24 @@ class OrderController extends Controller
     public function viewReceipt($id){
         if(Auth::check() && Auth::user()->account_type == 'customer'){
             if(Auth::user()->account_status == 'active'){
-                //perform generation of order receipt
                 $order = Order::find($id);
-                // return Redirect()->back()->with(['redirect',true]);
+                $orderedproducts = OrderedProduct::where('order_id',$order->order_id)->get();
+
+                $vat = $order->grand_total * 0.12;
+                return view('viewreceipt',compact('order','orderedproducts','vat'));
             }else{
                 Auth::logout();
                 session()->flash('success','Your account has been blocked by the Administrator.');
-                return view('auth/login');
+                return view('nothingtosee');
             }
         }else if(Auth::check() && Auth::user()->account_type == 'admin'){
-            //perform generation of order receipt
+            $order = Order::find($id);
+            $orderedproducts = OrderedProduct::where('order_id',$order->order_id)->get();
+
+            $vat = $order->grand_total * 0.12;
+            return view('admin/admin-viewReceipt',compact('order','orderedproducts','vat'));
         }else{
-            Auth::logout();
-            return view('auth/login');
+            return view('nothingtosee');
         }
     }
 }

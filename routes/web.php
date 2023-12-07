@@ -84,7 +84,7 @@ Route::get('/myorders', [OrderController::class,'viewAllMyOrders'])->name('myord
 Route::post('/myorders/placeorder',[OrderController::class,'addOrder'])->name('placeOrder');
 Route::get('/vieworder/{orderid}', [OrderController::class,'viewSpecificOrder'])->name('vieworder');
 Route::get('/vieworder/customercancelorder/{orderid}', [OrderController::class,'cancelOrder'])->name('vieworder'); //cancel order from customer side
-Route::get('/myorders/viewreceipt/{id}', [OrderController::class,'viewAllMyOrders'])->name('viewReceipt');
+Route::get('/myorders/viewreceipt/{id}', [OrderController::class,'viewReceipt'])->name('viewReceipt');
 
 //MANAGE 'MY PROFILE' PAGE
 Route::get('/myprofile', [UserController::class, 'viewUserProfile'])->name('myprofile');
@@ -174,6 +174,7 @@ Route::get('/admin-viewOrder/processing/{id}',[OrderController::class,'setOrderS
 Route::get('/admin-viewOrder/delivered/{id}',[OrderController::class,'setOrderStatusToDelivered']); //set order status to 'Delivered'
 Route::get('/admin-viewOrder/shipped/{id}',[OrderController::class,'setOrderStatusToShipped']); //set order status to 'Shipped'
 Route::get('/admin-viewOrder/cancelorder/{id}',[OrderController::class,'cancelOrder']); //Permanently Cancel an Order..
+Route::get('/admin-viewOrder/viewreceipt/{id}', [OrderController::class,'viewReceipt'])->name('admin-viewReceipt');
 
 //Manage Customers
 Route::get('/admin-manageCustomers',[UserController::class,'viewAllCustomers'])->name('admin-manageCustomers');
@@ -181,5 +182,8 @@ Route::get('/admin-viewCustomer/{id}',[UserController::class,'viewCustomerProfil
 
 Route::get('/admin-viewCustomer/blockCustomer/{id}',[UserController::class,'blockUser'])->name('admin-blockCustomer'); //block a customer account
 Route::get('/admin-viewCustomer/unblockCustomer/{id}',[UserController::class,'unblockUser'])->name('admin-unblockCustomer'); //unblock a customer account
-//Manage Sales Report
 
+//Manage Sales Report
+Route::get('/admin-salesReport',function(){
+    return view('admin/admin-salesReport');
+})->name('admin-viewSalesReport');
