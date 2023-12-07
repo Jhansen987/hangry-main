@@ -47,7 +47,7 @@
 					@if($order->delivery_date === null)
 						None
 					@else
-						{{$order->delivery_date->format('F d, Y')}}
+						{{ \Carbon\Carbon::parse($order->delivery_date)->format('F d, Y') }}
 					@endif
 				</p>
 		</div>
@@ -149,7 +149,7 @@
                         @break
 
                     @case("Delivered")
-                        <a href="#" target="_blank" class="btn-available-action">View Receipt</a>
+                        <a href="viewreceipt/{{$order->id}}" target="_blank" class="btn-available-action">View Receipt</a>
                         @break
 
                     @case("Cancelled")

@@ -50,6 +50,9 @@
     </div>
 
 </div>
+<!-- For pagination of products -->
+{{$products->links()}}
+
 @include ('footers.footer')
 </body>
 </html>

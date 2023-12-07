@@ -11,7 +11,7 @@
     <div class="div-for-searchbar">
         <input id="searchorderID" class="searchbar" type="text" name="searchorderID" placeholder = "Search Order ID..">
 		<button class="btn-search-icon"><img src="icons/search-icon-yellow.svg" alt="" class="search-icon"></button>
-    </div>
+    </div><!--hdsadsasjhdsahj-->
 
     <div class="myorders-section">
     @foreach($orders as $order)
@@ -47,6 +47,10 @@
 
     </div>
 </div>
+
+<!-- For pagination of products -->
+{{$orders->links()}}
+
 @include ('footers.footer')
 </body>
 </html>

@@ -64,11 +64,11 @@
             <button class="btn-view-customer" onclick="window.location.href='{{url('admin-viewCustomer/'.$user->id)}}';">VIEW CUSTOMER</button>
         </div>
     @endforeach
+    <!-- For pagination of customers -->
+    {{$users->links()}}
     </div>
 </div>
 @endif
-
-
 
 <div style="height:1rem;width:100%;margin-top:12rem;"></div>
 @include ('../footers.admin-footer')

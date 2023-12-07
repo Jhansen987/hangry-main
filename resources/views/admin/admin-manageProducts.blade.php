@@ -34,45 +34,59 @@
     Manage Menus<br>
     <button class="btn-action-general-2" onclick="window.location.href='{{url('admin-addProduct')}}';">+ Add New Menu</button>
 </div>
-<div class="div-for-general-table">
-<table class="general-table">
 
-  <tr>
-    <th width="8%">Actions</th>
-    <th width="12%">Product Image</th>
-    <th width="30%">Name</th>
-    <th width="12%">Status</th>
-    <th width="13%">Stocks</th>
-    <th width="15%">Price</th>
-    <th width="10%">Ratings</th>
-  </tr>
+@if($products->isEmpty())
+  <div class="div-for-no-items-found">
+      <img src="{{asset('icons/three-dots-red.svg')}}" alt="" style="margin-top:2rem;height:5rem;width:5rem;"><br>
+      You currently have no products in the website.
+  </div>
+  <div style="height:1rem;width:100%;"></div>
+@else
 
-@foreach($products as $product)
-  <tr>
-    <td>
-      <button class="btn-action-general-3" onclick="window.location.href='{{url('admin-viewProduct/'.$product->id)}}';">
-        <img src="../icons/eye-orange-icon.svg" class="btn-icons-3">
-        <p class="position-absolute-message-2">View Product</p>
-      </button>
-      <button class="btn-action-general-3" onclick="window.location.href='{{url('admin-editProduct/'.$product->id)}}';">
-        <img src="../icons/edit-orange-icon.svg" class="btn-icons-3">
-        <p class="position-absolute-message-2">Edit</p>
-      </button>
-      <button class="btn-action-general-3">
-        <img src="../icons/trash-orange-icon.svg" class="btn-icons-3">
-        <p class="position-absolute-message-2">Delete</p>
-      </button>
-    </td>
-    <td><img src = "{{asset('storage/'.$product->product_image_path)}}" alt="" class="small-prod-image"></td>
-    <td>{{$product->product_name}}</td>
-    <td>{{$product->status}}</td>
-    <td>{{$product->stocks}}</td>
-    <td>Php {{$product->price}}</td>
-    <td>{{$product->rating}}</td>
-  </tr>
-@endforeach
-</table>
-</div>
+    <div class="div-for-general-table">
+    <table class="general-table">
+
+      <tr>
+        <th width="8%">Actions</th>
+        <th width="12%">Product Image</th>
+        <th width="30%">Name</th>
+        <th width="12%">Status</th>
+        <th width="13%">Stocks</th>
+        <th width="15%">Price</th>
+        <th width="10%">Ratings</th>
+      </tr>
+
+    @foreach($products as $product)
+      <tr>
+        <td>
+          <button class="btn-action-general-3" onclick="window.location.href='{{url('admin-viewProduct/'.$product->id)}}';">
+            <img src="../icons/eye-orange-icon.svg" class="btn-icons-3">
+            <p class="position-absolute-message-2">View Product</p>
+          </button>
+          <button class="btn-action-general-3" onclick="window.location.href='{{url('admin-editProduct/'.$product->id)}}';">
+            <img src="../icons/edit-orange-icon.svg" class="btn-icons-3">
+            <p class="position-absolute-message-2">Edit</p>
+          </button>
+          <button class="btn-action-general-3">
+            <img src="../icons/trash-orange-icon.svg" class="btn-icons-3">
+            <p class="position-absolute-message-2">Delete</p>
+          </button>
+        </td>
+        <td><img src = "{{asset('storage/'.$product->product_image_path)}}" alt="" class="small-prod-image"></td>
+        <td>{{$product->product_name}}</td>
+        <td>{{$product->status}}</td>
+        <td>{{$product->stocks}}</td>
+        <td>Php {{$product->price}}</td>
+        <td>{{$product->rating}}</td>
+      </tr>
+    @endforeach
+    </table>
+    </div>
+    <!-- For pagination of products -->
+    {{$products->links()}}
+    <div style="height:1rem;width:100%;margin-top:13rem;"></div>
+@endif
+
 @include ('../footers.admin-footer')
 </body>
 </html>

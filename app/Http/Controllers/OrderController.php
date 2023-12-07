@@ -236,6 +236,7 @@ class OrderController extends Controller
 
             $update = Order::find($request->id)->update([
                 'order_status' => "Processing",
+                'payment_status' => "Awaiting Payment",
                 'shipping_fee' => $request->deliveryFee,
                 'grand_total' => $newgrandtotal
             ]);
@@ -266,6 +267,26 @@ class OrderController extends Controller
                 'delivery_date'=> $request->deliveryDate
             ]);
             return Redirect()->back();
+        }else{
+            Auth::logout();
+            return view('auth/login');
+        }
+    }
+
+    //To Generate and View Order Receipt
+    public function viewReceipt($id){
+        if(Auth::check() && Auth::user()->account_type == 'customer'){
+            if(Auth::user()->account_status == 'active'){
+                //perform generation of order receipt
+                $order = Order::find($id);
+                // return Redirect()->back()->with(['redirect',true]);
+            }else{
+                Auth::logout();
+                session()->flash('success','Your account has been blocked by the Administrator.');
+                return view('auth/login');
+            }
+        }else if(Auth::check() && Auth::user()->account_type == 'admin'){
+            //perform generation of order receipt
         }else{
             Auth::logout();
             return view('auth/login');

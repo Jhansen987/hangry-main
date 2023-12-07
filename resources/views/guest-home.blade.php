@@ -62,7 +62,12 @@
     </div>
     
     @endforeach
+
 </div>
+
+<!-- For pagination of announcements -->
+{{$announcements->links()}}
+
 @include ('footers.footer')
 </body>
 </html>

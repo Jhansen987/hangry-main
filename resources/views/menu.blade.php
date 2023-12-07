@@ -75,6 +75,10 @@
 
     </div>
 </div>
+
+<!-- For pagination of products -->
+{{$products->links()}}
+
 @include ('footers.footer')
 
 <script> //to update all items in user's cart in a single click of a button.

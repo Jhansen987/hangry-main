@@ -82,14 +82,24 @@ class ProductController extends Controller
     //updates the product in the database..
     public function updateProduct(Request $request , $id){
         if(Auth::check() && Auth::user()->account_type == 'admin'){
-            $validated = $request->validate([
-                'menuImage' => 'nullable|image|max:2048|mimes:jpg,png,jpeg',
-                'menuName' => 'required|string|unique:products,product_name',
-                'menuPrice' => 'required|numeric|min:0',
-                'menuStock' => 'required|numeric|min:0',
-                'menuDescription' => 'string',
-            ]);
-
+            if(trim(strtolower($request->menuName)) == trim(strtolower($request->originalMenuName))){
+                $validated = $request->validate([
+                    'menuImage' => 'nullable|image|max:2048|mimes:jpg,png,jpeg',
+                    'menuName' => 'required|string',
+                    'menuPrice' => 'required|numeric|min:0',
+                    'menuStock' => 'required|numeric|min:0',
+                    'menuDescription' => 'string',
+                ]);
+            }else{
+                $validated = $request->validate([
+                    'menuImage' => 'nullable|image|max:2048|mimes:jpg,png,jpeg',
+                    'menuName' => 'required|string|unique:products,product_name',
+                    'menuPrice' => 'required|numeric|min:0',
+                    'menuStock' => 'required|numeric|min:0',
+                    'menuDescription' => 'string',
+                ]);
+            }
+            
             //get the image path of the user's newly uploaded image for a product..
             if($request->hasFile('menuImage')){
                 $imagepath = $request->file('menuImage')->store('product-images','public');
@@ -112,7 +122,7 @@ class ProductController extends Controller
             if($update){
                 return Redirect()->route('admin-manageProducts')->with(['success'=>'Menu Updated Successfully!']);
             }else{
-                return redirect()->back()->withInput()->withErrors(['error' => 'Failed to create menu.']);
+                return redirect()->back()->with(['success' => 'Failed to update menu. Please try again']);
             }
         }else{
             Auth::logout();

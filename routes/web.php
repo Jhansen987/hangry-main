@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -81,10 +81,10 @@ Route::get('/checkout',[CartController::class,'viewCheckoutItems']);
 
 //MY ORDERS
 Route::get('/myorders', [OrderController::class,'viewAllMyOrders'])->name('myorders');
-
 Route::post('/myorders/placeorder',[OrderController::class,'addOrder'])->name('placeOrder');
 Route::get('/vieworder/{orderid}', [OrderController::class,'viewSpecificOrder'])->name('vieworder');
 Route::get('/vieworder/customercancelorder/{orderid}', [OrderController::class,'cancelOrder'])->name('vieworder'); //cancel order from customer side
+Route::get('/myorders/viewreceipt/{id}', [OrderController::class,'viewAllMyOrders'])->name('viewReceipt');
 
 //MANAGE 'MY PROFILE' PAGE
 Route::get('/myprofile', [UserController::class, 'viewUserProfile'])->name('myprofile');

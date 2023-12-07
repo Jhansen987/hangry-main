@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
@@ -12,11 +12,11 @@ use App\Models\Announcement;
 class AnnouncementController extends Controller
 {
     public function viewAnnouncements(Request $request){
-        $announcements = Announcement::latest()->paginate(5);
         if(Auth::check() && Auth::user()->account_type == 'admin'){
             return view('admin/admin-home');
         }else if(Auth::check() && Auth::user()->account_type == 'customer'){
             if(Auth::user()->account_status == 'active'){
+                $announcements = Announcement::latest()->paginate(5);
                 return view('home',compact('announcements'));
             }else{
                 Auth::logout();
@@ -25,6 +25,7 @@ class AnnouncementController extends Controller
             }
         }else{
             Auth::logout();
+            $announcements = Announcement::latest()->paginate(5);
             return view('guest-home',compact('announcements'));
         }
     }

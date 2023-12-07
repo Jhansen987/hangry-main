@@ -1,0 +1,35 @@
+.div-for-pagination{
+    height:auto;
+    width:100%;
+    /* background:yellow; */
+    text-align:center;
+    margin:3rem auto 0;
+    background-color:transparent;
+}
+
+.pagination-font-size{
+    font-size:1rem;
+    text-decoration:none;
+}
+
+.pagination-elements{
+    background-color:transparent;
+    border:2px solid #a7660c;
+    border-radius:0.4rem;
+    text-decoration:none;
+    text-align:center;
+    color:#a7660c;
+    font-weight:bold;
+    font-size:0.9rem;
+    margin:0 0.1rem;
+}
+
+.text-decoration-none{
+    text-decoration:none;
+}
+
+.active{
+    color:#fff;
+    background-color:#ed3921;
+    border:2px solid #ed3921;
+}

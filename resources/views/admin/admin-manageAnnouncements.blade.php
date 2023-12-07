@@ -67,6 +67,10 @@
       </div>
   </div>
   @endforeach
+  
+  <!-- For pagination of announcements -->
+  {{$announcements->links()}}
+
   <div style="height:1rem;width:100%;margin-top:13rem;"></div>
 @endif
 @include ('../footers.admin-footer')

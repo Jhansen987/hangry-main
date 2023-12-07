@@ -70,7 +70,7 @@
         @if($order->delivery_date === null)
             None
         @else
-            {{$order->delivery_date->format('F d, Y')}}
+            {{ \Carbon\Carbon::parse($order->delivery_date)->format('F d, Y') }}
         @endif
     </td>
   </tr>
@@ -79,6 +79,8 @@
 
 </table>
 </div>
+<!-- Pagination for customer orders -->
+{{$orders->links()}}
 <div style="height:1rem;width:100%;margin-top:10rem;"></div>
 @include ('../footers.admin-footer')
 </body>

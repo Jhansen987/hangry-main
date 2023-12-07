@@ -329,3 +329,37 @@ input[type="number"]:focus{
   color:#247c34;
   border-color:#247c34;
 }
+
+.div-for-error{
+  width:92%;
+  height:auto;
+  text-align:left;
+  margin:-0.8rem auto 1rem;
+  background-color:#fbe2e1;
+  border-radius:0.4rem;
+  padding:0.5rem;
+  box-sizing:border-box;
+}
+
+.error{
+  font-size:0.8rem;
+  color:red;
+  font-weight:bold;
+}
+
+.small-form-txt{
+  font-size:0.7rem;
+  color:#808586;
+}
+
+@media screen and (max-width:350px){
+  .small-form-txt{
+    font-size:0.55rem;
+  }
+}
+
+@media screen and (max-width:300px){
+  label{
+    font-size:0.8rem;
+  }
+}
