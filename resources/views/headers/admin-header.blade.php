@@ -48,7 +48,8 @@
                     <li><a href="{{route('admin-manageCustomers')}}">Customers</a></li>
                     <li><a href="{{route('admin-manageAnnouncements')}}">Announcements</a></li>
                     <li><a href="{{route('admin-viewSalesReport')}}">Sales Report</a></li>
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="{{route('admin-manageFAQ')}}">FAQs</a></li>
+});
                 </ul>
             </li>
             <li><a href="{{route('admin-about')}}">ABOUT</a></li>
@@ -90,7 +91,7 @@
             <li><a href="{{route('admin-manageCustomers')}}">Customers</a></li>
             <li><a href="{{route('admin-manageAnnouncements')}}">Announcements</a></li>
             <li><a href="{{route('admin-viewSalesReport')}}">Sales Report</a></li>
-            <li><a href="#">FAQs</a></li>
+            <li><a href="{{route('admin-manageFAQ')}}">FAQs</a></li>
         </ul>   
     </div>
     <button id="mobile-subdropdown-btn-2" class="btn-mobile-nav-link" onclick="adminResponsiveSubDropdown2()">

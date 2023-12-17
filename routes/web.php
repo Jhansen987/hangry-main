@@ -195,6 +195,4 @@ Route::get('/searchcustomers', [UserController::class,'searchCustomer'])->name('
 
 
 //MANAGE FAQs
-Route::get('/admin-managefaq',function(){
-    return view('admin/admin-manageFAQ');
-});
+Route::get('/admin-managefaq',[FaqController::class,'viewFAQ'])->name('admin-manageFAQ');
