@@ -301,7 +301,9 @@ body{
 }
 .btn-action-general-2:hover{background-color:#b33a00;color:#fff;}
 
-.position-absolute-message-1,.position-absolute-message-2{
+.position-absolute-message-1,
+.position-absolute-message-2,
+.position-absolute-message-3{
     position:absolute;
     height:auto;
     padding:0.2rem 0.4rem;
@@ -314,10 +316,15 @@ body{
     font-size:0.7rem;
     display:none;
 }
+
 .position-absolute-message-2{margin:-1.5rem 0 0 2rem;}
+.position-absolute-message-3{margin:-1.5rem 0 0 -4rem;}
 
 .edit-msg{margin-left:-2.7rem;}
-.btn-action-general-1:hover .position-absolute-message-1{display:block;}
+.edit-msg-2{margin:-1.5rem 0 0 -3rem;}
+
+.btn-action-general-1:hover .position-absolute-message-1,
+.btn-action-general-3:hover .position-absolute-message-3{display:block;}
 
 .menu-table{
     display:table;
@@ -1693,7 +1700,6 @@ input[type="date"]:focus,.delivery-fee-field:focus{
     .myorders-section{width:14rem;}
     .box-order,.box-customer{margin:2rem auto 1rem;display:block;}
     .box-customer{margin:5rem auto;}
-    .general-table{width:80%;}
 }
 
 @media screen and (max-width:570px){

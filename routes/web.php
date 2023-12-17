@@ -192,3 +192,9 @@ Route::get('/admin-salesReport',[OrderController::class,'viewSalesReport'])->nam
 Route::get('/searchmenu', [ProductController::class,'searchProduct'])->name('searchmenu');
 Route::get('/searchorder', [OrderController::class,'searchOrder'])->name('searchorder');
 Route::get('/searchcustomers', [UserController::class,'searchCustomer'])->name('searchcustomers');
+
+
+//MANAGE FAQs
+Route::get('/admin-managefaq',function(){
+    return view('admin/admin-manageFAQ');
+});
