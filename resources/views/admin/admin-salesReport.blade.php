@@ -31,9 +31,22 @@
 <div class="home-title-header-1 body-margin-top sales-report-header">
     Sales Report
 </div>
-<div class="div-for-google-chart-display">
+<div class="div-for-google-chart-display" style="margin-bottom:3rem;">
     <div id="chart_div" class="chart-display"></div>
 </div>
+
+
+<!-- <div class="div-for-general-table">
+  <table class="general-table">
+
+      <tr>
+        <th>Order ID</th>
+        <th>Date Ordered</th>
+        <th>Grand Total</th>
+      </tr>
+
+  </table>
+</div> -->
 
 @include ('../footers.admin-footer')
 
@@ -45,39 +58,36 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(drawBasic);
 
 function drawBasic() {
-
+      var salesData = @json($salesPerMonth);
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Months');
       data.addColumn('number', 'Sales');
 
-      data.addRows([
-        ['Jan', 1],
-        ['Feb', 2],
-        ['Mar', 3],
-        ['Apr', 4],
-        ['May', 5],
-        ['June', 6],
-        ['July', 7],
-        ['Aug', 8],
-        ['Sept', 9],
-        ['Oct', 10],
-        ['Nov', 11],
-        ['Dec', 12],
-      ]);
+      for(var key in salesData){
+        if(salesData.hasOwnProperty(key)){
+          var month = getNameOfMonth(key);
+          var totalSalesOfTheMonth = parseFloat(salesData[key]);
+          data.addRow([month,totalSalesOfTheMonth]);
+        }
+      }
+
+      var formatter = new google.visualization.NumberFormat({
+        prefix: '\u20B1 ' // Set the peso sign as a prefix in the tooltip or label
+      });
+      
+      formatter.format(data, 1);
 
       var options = {
-        title: 'Motivation Level Throughout the Day',
+        title: 'Sales Report for 2023',
+        titleTextStyle:{fontSize:20},
+
         hAxis: {
-            title: 'Time of Day',
-            format: 'h:mm a',
-            viewWindow: {
-                min: [7, 30, 0],
-                max: [17, 30, 0]
-            }
+            title: 'Months',
         },
         vAxis: {
-            title: 'Rating (scale of 1-10)'
+            title: 'Total Sales in Philippine Peso ('+'\u20B1'+')'
         },
+        colors: ['#cf4a26'] ,
         responsive: true
       };
 
@@ -86,6 +96,15 @@ function drawBasic() {
 
       chart.draw(data, options);
     }
+
+function getNameOfMonth($monthkey){
+  var monthNames = [
+    'Jan','Feb','Mar','Apr','May','Jun',
+    'July','Aug','Sept','Oct','Nov','Dec'
+  ];
+
+  return monthNames[$monthkey-1];
+}
 
 // redraw the chart to make it responsive on the user's device everytime the user attempts to resize its browser
 window.addEventListener('resize', function () {

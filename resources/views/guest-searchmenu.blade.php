@@ -1,4 +1,4 @@
-@include ('headers.customer-header')
+@include ('headers.guest-header')
 
 <!DOCTYPE html>
 <html>

@@ -458,7 +458,7 @@ body{
     text-align:center;
 }
 
-.searchbar{
+.searchbar,.searchbar-2{
     height:1.9rem;
     font-size:0.7rem;
     width:20rem;
@@ -468,8 +468,20 @@ body{
     border:2px solid #df9a12;
 }
 
-.searchbar:focus{
+.searchbar-2{
+    background-color:transparent;
+    color:#000;
+    font-weight:bold;
+    border-color:#e41c0b;
+}
+
+.searchbar:focus,.searchbar-2:focus{
     outline:none;
+    border:2px solid #e41c0b !important;
+}
+
+.searchbar-2::placeholder{
+    color:#e41c0b;
 }
 
 .btn-search-icon{
@@ -1564,7 +1576,7 @@ input[type="date"]:focus,.delivery-fee-field:focus{
     height:25rem;
     text-align:center;
     width:90%;
-    background-color:green;
+    background-color:transparent;
     max-width:67rem;
     border-radius:0.4rem;
     overflow-y:hidden;
@@ -1694,7 +1706,7 @@ input[type="date"]:focus,.delivery-fee-field:focus{
     .business-logo-2{margin-top:4.5rem;}
     .btn-shop-now-1{margin-top:1.7rem;}
     .txt-carousel{padding:0.4rem;text-align:center;}
-    .searchbar{width:15rem;}
+    .searchbar,.searchbar-2{width:15rem;}
     .viewproduct-content-box-2{width:85%}
     .home-title-header-1{font-size:1.4rem;}
     .col-announcement-2{font-size:0.8rem;}
@@ -1711,7 +1723,7 @@ input[type="date"]:focus,.delivery-fee-field:focus{
     .box-menu{width:18rem;min-height:11rem;height:auto;padding:1rem 0.4rem 1rem;}
     .div-menu-image,.menu-image{height:6rem;width:6rem;}
     .business-logo-2{margin-top:3rem;}
-    .searchbar{width:10rem;}
+    .searchbar,.searchbar-2{width:10rem;}
     .txt-box-info-email{font-size:0.9rem;}
     /*CART PAGE*/
     .btn-cart-1,.btn-danger{width:47%;font-size:0.7rem;padding:0 0.3rem;margin:0.4rem 0.1rem;}
@@ -1745,7 +1757,7 @@ input[type="date"]:focus,.delivery-fee-field:focus{
     .menu-status,.menu-status-2{font-size:0.6rem;width:5.1rem;}
     .div-menu-image,.menu-image{height:4.5rem;width:4.5rem;}
     .txt-carousel{font-size:1.3rem;}
-    .searchbar{width:7rem;}
+    .searchbar,.searchbar-2{width:7rem;}
     .btn-menu-1{margin-left:0.4rem;font-size:0.6rem;width:5rem;}
     .txt-box-info-email{font-size:0.6rem;}
     .div-for-viewproduct-image-display,.viewproduct-content-box-1{height:13rem;width:13rem;}

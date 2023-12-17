@@ -38,7 +38,7 @@ class UserController extends Controller
     public function viewAllCustomers(){
         if(Auth::check() && Auth::user()->account_type == 'admin'){
             $users = User::select('id','firstname','lastname','username','account_status','profile_photo_path')
-            ->where('account_type','customer')->paginate(8);
+            ->where('account_type','customer')->paginate(12);
             return view('admin/admin-manageCustomers',compact('users'));
         }else{
             Auth::logout();
@@ -66,6 +66,23 @@ class UserController extends Controller
             ]);
 
             return Redirect()->back()->with(['success' => 'The customer account has been unblocked successfully.']);
+        }else{
+            Auth::logout();
+            return view('auth/login');
+        }
+    }
+
+    public function searchCustomer(Request $request){
+        if(Auth::check() && Auth::user()->account_type == 'admin'){
+            $users = User::select('id','firstname','lastname','username','account_status','profile_photo_path')
+                    ->whereNotIn('account_type',['admin'])
+                    ->where(function ($query) use ($request){
+                    $query->where('firstname','LIKE', '%'.$request->searchcustomer.'%')
+                    ->orWhere('lastname','LIKE', '%'.$request->searchcustomer.'%')
+                    ->orWhere('username','LIKE', '%'.$request->searchcustomer.'%')
+                    ->orWhere('email','LIKE', '%'.$request->searchcustomer.'%');
+                    })->paginate(12);
+            return view('admin/admin-searchcustomers',compact('users'));
         }else{
             Auth::logout();
             return view('auth/login');

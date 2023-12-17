@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\Order;
@@ -296,5 +297,61 @@ class OrderController extends Controller
         }else{
             return view('nothingtosee');
         }
+    }
+
+    public function searchOrder(Request $request){
+        if(Auth::check() && Auth::user()->account_type == 'customer'){
+            if(Auth::user()->account_status == 'active'){
+                $orders = Order::where('order_id', 'LIKE', '%'.$request->searchorder.'%')
+                        ->where('username',Auth::user()->username)
+                        ->latest()
+                        ->paginate(8);
+                return view('searchmyorders',compact('orders'));
+            }else{
+                Auth::logout();
+                session()->flash('success','Your account has been blocked by the Administrator.');
+                return view('auth/login');
+            }
+        }else if(Auth::check() && Auth::user()->account_type == 'admin'){
+            $orders = Order::where('order_id', 'LIKE', '%'.$request->searchorder.'%')->latest()->paginate(10);
+            return view('admin/admin-searchorders',compact('orders'));
+        }else{
+            Auth::logout();
+            return view('auth/login');
+        }
+    }
+
+    public function viewSalesReport(){
+        if(Auth::check() && Auth::user()->account_type == 'admin'){
+
+            $sales = Order::select(DB::raw('MONTH(created_at) as month'), DB::raw('COALESCE(SUM(grand_total),0) as totalsales'))
+                            ->where('payment_status', 'Paid')
+                            ->groupBy(DB::raw('MONTH(created_at)'))
+                            ->pluck('totalsales','month')
+                            ->toArray();
+
+            $salesPerMonth = [];
+
+            // Assign the sales per month, if no sales found for a specific month, set value to 0 for that month
+            for ($i = 1; $i <= 12; $i++) {
+                $salesPerMonth[$i] = $sales[$i] ?? 0;
+            }
+
+            $orders = Order::latest()->where('payment_status','Paid')
+                    ->join('orderedproducts','orders.order_id','=','orderedproducts.order_id')
+                    ->select('orders.*','orderedproducts.*')
+                    ->paginate(10);
+            
+                    // dd($orders);
+            return view('admin/admin-salesReport',compact('salesPerMonth','orders'));
+
+        }else{
+            Auth::logout();
+            return view('auth/login');
+        }
+    }
+
+    public function addOrderFromBuyNow(){
+        
     }
 }

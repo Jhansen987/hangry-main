@@ -42,7 +42,7 @@
 @if($users->isEmpty())
   <div class="div-for-no-items-found">
       <img src="{{asset('icons/three-dots-red.svg')}}" alt="" style="margin-top:2rem;height:5rem;width:5rem;"><br>
-      You have no customers in the website.
+      No customer found.
   </div>
 @else
 <div class="main-body-content">

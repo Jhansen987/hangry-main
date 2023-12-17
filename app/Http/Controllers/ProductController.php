@@ -146,4 +146,23 @@ class ProductController extends Controller
             return view('guest-viewproduct',compact('product'));
         }
     }
+
+    public function searchProduct(Request $request){
+        if(Auth::check() && Auth::user()->account_type == 'admin'){
+            $products = Product::where('product_name', 'LIKE', '%'.$request->searchproduct.'%')->latest()->paginate(6);
+            return view('admin/admin-searchmenu',compact('products'));
+        }else if(Auth::check() && Auth::user()->account_type == 'customer'){
+            if(Auth::user()->account_status == 'active'){
+                $products = Product::where('product_name', 'LIKE', '%'.$request->searchproduct.'%')->latest()->paginate(6);
+                return view('searchmenu',compact('products'));
+            }else{
+                Auth::logout();
+                session()->flash('success','Your account has been blocked by the Administrator.');
+                return view('auth/login');
+            }
+        }else{
+            $products = Product::where('product_name', 'LIKE', '%'.$request->searchproduct.'%')->latest()->paginate(6);
+            return view('guest-searchmenu',compact('products'));
+        }
+    }
 }

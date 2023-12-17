@@ -51,6 +51,7 @@ Route::get('/',[AnnouncementController::class,'viewAnnouncements']);
 Route::get('/home',[AnnouncementController::class,'viewAnnouncements']);
 
 Route::get('/menu', [ProductController::class,'displayAllProducts']);
+
 Route::get('/viewproduct/{id}', [ProductController::class,'viewProduct']);
 
 Route::get('/about', function (){
@@ -184,6 +185,10 @@ Route::get('/admin-viewCustomer/blockCustomer/{id}',[UserController::class,'bloc
 Route::get('/admin-viewCustomer/unblockCustomer/{id}',[UserController::class,'unblockUser'])->name('admin-unblockCustomer'); //unblock a customer account
 
 //Manage Sales Report
-Route::get('/admin-salesReport',function(){
-    return view('admin/admin-salesReport');
-})->name('admin-viewSalesReport');
+Route::get('/admin-salesReport',[OrderController::class,'viewSalesReport'])->name('admin-viewSalesReport');
+
+
+//CUSTOMER AND ADMIN SIDE....
+Route::get('/searchmenu', [ProductController::class,'searchProduct'])->name('searchmenu');
+Route::get('/searchorder', [OrderController::class,'searchOrder'])->name('searchorder');
+Route::get('/searchcustomers', [UserController::class,'searchCustomer'])->name('searchcustomers');

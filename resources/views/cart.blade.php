@@ -76,14 +76,20 @@
 	</div>
 
 	<div class="content-box-4">
+		
 		<div class="content-box-2">
 			<div class="content-box-main-header">CART ACTIONS</div><br>
+		@if($carts->isEmpty())
+			<p class="txt-note">There is currently no available action that you can do in your cart.</p>
+		@else
 			<p class="txt-note">Whenever you change the quantities of your products, always click on <b>UPDATE CART</b> to save your changes.</p>
+
 			<button class="btn-cart-full-width" id="btn-update-cart">UPDATE CART</button> <!-- btn-cart-1 class -->
 			<form action="{{url('cart/deleteAll')}}" method="POST">
 				@csrf
 				<button type="submit" class="btn-cart-full-width">REMOVE ALL</button>
 			</form>
+		@endif
 		</div>
 	
 		<div class="content-box-2">
@@ -116,8 +122,9 @@
 					</td>
 				</tr>
 			</table>
-			
+			@if($carts->isNotEmpty())
 			<button class="btn-cart-full-width" onclick="window.location.href = '{{url('checkout')}}';">PROCEED TO CHECKOUT</button>
+			@endif
 		</div>
 	</div>
 </div>

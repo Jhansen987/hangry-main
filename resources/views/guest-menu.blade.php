@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Menu | Hangry</title>
-        <link rel="stylesheet" href="css/style-main.css">
+        <link rel="stylesheet" href="{{asset('css/style-main.css')}}">
     </head>
 <body>
 <div class="main-body-content">
@@ -19,8 +19,10 @@
     </div>
 
     <div class="div-for-searchbar">
-        <input id="searchproduct" class="searchbar" type="text" name="searchproduct" placeholder = "Search a product..">
-		<button class="btn-search-icon"><img src="icons/search-icon-yellow.svg" alt="" class="search-icon"></button>
+        <form action = "{{route('searchmenu')}}" method="get">
+            <input id="searchproduct" class="searchbar" type="text" name="searchproduct" placeholder = "Search a Menu..">
+		    <button type="submit" class="btn-search-icon"><img src="icons/search-icon-yellow.svg" alt="" class="search-icon"></button>
+        </form>
     </div>
 
     <div class="menu-section">

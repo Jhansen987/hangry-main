@@ -17,8 +17,8 @@
         <div class="box-popup-header">
             <button class="btn-close-popup" onclick="searchbarPopup()">X</button>
         </div>
-        <form action="menu.php" method="get">
-            <input type="text" id="nav-searchproduct" name="nav-searchproduct" class="nav-searchbar" placeholder="Search a Product..">
+        <form action="{{route('searchmenu')}}" method="get">
+            <input type="text" id="nav-searchproduct" name="searchproduct" class="nav-searchbar" placeholder="Search a Menu..">
             <input type="submit" class="btn-nav-search" value="Search">
         </form>
     </div>

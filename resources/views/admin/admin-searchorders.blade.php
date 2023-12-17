@@ -36,7 +36,7 @@
 <div class="div-for-searchbar">
     <form action = "{{route('searchorder')}}" method="get">
         <input id="searchorder" class="searchbar-2" type="text" name="searchorder" placeholder = "Search an Order ID..">
-		    <button type="submit" class="btn-search-icon"><img src="icons/search-icon-red.svg" alt="" class="search-icon"></button>
+		<button type="submit" class="btn-search-icon"><img src="icons/search-icon-red.svg" alt="" class="search-icon"></button>
     </form>
 </div>
 
