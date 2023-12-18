@@ -714,7 +714,7 @@ a.back-hyperlink{
     max-width:10rem;
     background-color:#e16c00;
     margin-bottom:1rem;
-    border:10px solid #ef9f37;
+    border:10px solid #d92e26;
 }
 
 .horizontal-line,.profile-section{max-width:50.5rem;width:100%;text-align:center;}
@@ -753,16 +753,19 @@ a.back-hyperlink{
 
 .dashboard-header > a{
     text-decoration:none;
-    color:#db8312;
+    color:#de362a;
     font-weight:bold;
     font-size:1rem;
     margin:0.2rem auto 0.5rem;
     padding:0.2rem 0.9rem;
     border-radius:0.4rem;
+    border:2px solid #de362a;
 }
 
 .dashboard-header > a:hover{
-    color:#ee9c31;
+    /* color:#ee9c31; */
+    background-color:#de362a;
+    color:#fff;
 }
 
 .btn-viewprofile-action{
@@ -1421,7 +1424,7 @@ input[type="radio"]{
     margin:2rem auto;
     min-width:13rem;
     max-width:71rem;
-    border:2px solid #e95116;
+    border:3px solid #e95116;
     padding:0;
 }
 
@@ -1595,6 +1598,8 @@ input[type="date"]:focus,.delivery-fee-field:focus{
     height:100%;
     width:100%;
 }
+
+.border-red{border-color: #d92e26;}
 
 @media screen and (max-width:1350px){
     .box-menu{margin:0.4rem 0 0.4rem 2rem;}

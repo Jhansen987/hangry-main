@@ -8,17 +8,19 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Cart;
 
 class ProductController extends Controller
 {
     //
 
     public function displayAllProducts(){
-        $products = Product::latest()->paginate(6);
         if(Auth::check() && Auth::user()->account_type == 'admin'){
+            $products = Product::latest()->paginate(10);
             return view('admin/admin-manageProducts',compact('products'));
         }else if(Auth::check() && Auth::user()->account_type == 'customer'){
             if(Auth::user()->account_status == 'active'){
+                $products = Product::where('status','Visible to Public')->latest()->paginate(6);
                 return view('menu',compact('products'));
             }else{
                 Auth::logout();
@@ -26,6 +28,7 @@ class ProductController extends Controller
                 return view('auth/login');
             }
         }else{
+            $products = Product::where('status','Visible to Public')->latest()->paginate(6);
             return view('guest-menu',compact('products'));
         }
     }
@@ -52,7 +55,7 @@ class ProductController extends Controller
                 'product_name' => $request->menuName,
                 'price' => $request->menuPrice,
                 'stocks' => $request->menuStock,
-                'status' => "normal",
+                'status' => "Visible to Public",
                 'description' => $request->menuDescription,
                 'created_at' => Carbon::now()
             ]);
@@ -136,14 +139,22 @@ class ProductController extends Controller
             return view('admin/admin-viewProduct',compact('product'));
         }else if(Auth::check() && Auth::user()->account_type == 'customer'){
             if(Auth::user()->account_status == 'active'){
-                return view('viewproduct',compact('product'));
+                if($product->status == 'Visible to Public'){
+                    return view('viewproduct',compact('product'));
+                }else{
+                    return Redirect()->back()->with(['success'=> 'Sorry, the product has been made temporary unavailable by the Administrator just now.']);
+                }
             }else{
                 Auth::logout();
                 session()->flash('success','Your account has been blocked by the Administrator.');
                 return view('auth/login');
             }
         }else{
-            return view('guest-viewproduct',compact('product'));
+            if($product->status == 'Visible to Public'){
+                return view('guest-viewproduct',compact('product'));
+            }else{
+                return Redirect()->back()->with(['success'=> 'Sorry, the product has been made temporary unavailable by the Administrator just now.']);
+            }
         }
     }
 
@@ -153,7 +164,8 @@ class ProductController extends Controller
             return view('admin/admin-searchmenu',compact('products'));
         }else if(Auth::check() && Auth::user()->account_type == 'customer'){
             if(Auth::user()->account_status == 'active'){
-                $products = Product::where('product_name', 'LIKE', '%'.$request->searchproduct.'%')->latest()->paginate(6);
+                $products = Product::where('product_name', 'LIKE', '%'.$request->searchproduct.'%')
+                ->where('status','Visible to Public')->latest()->paginate(6);
                 return view('searchmenu',compact('products'));
             }else{
                 Auth::logout();
@@ -161,8 +173,37 @@ class ProductController extends Controller
                 return view('auth/login');
             }
         }else{
-            $products = Product::where('product_name', 'LIKE', '%'.$request->searchproduct.'%')->latest()->paginate(6);
+            $products = Product::where('product_name', 'LIKE', '%'.$request->searchproduct.'%')
+            ->where('status','Visible to Public')->latest()->paginate(6);
             return view('guest-searchmenu',compact('products'));
+        }
+    }
+
+    public function hideProductFromPublic($id){ //for admin
+        if(Auth::check() && Auth::user()->account_type == 'admin'){
+            $update = Product::find($id)->update([
+                'status' => "Hidden from Public"
+            ]);
+
+            $delete = Cart::where('product_id',$id)->delete();
+
+            return redirect()->back()->with(['success' => 'The product has been successfully hidden from customers\' view!']);
+        }else{
+            Auth::logout();
+            return view('auth/login');
+        }
+    }
+
+    public function unhideProductFromPublic($id){//for admin
+        if(Auth::check() && Auth::user()->account_type == 'admin'){
+            $update = Product::find($id)->update([
+                'status' => "Visible to Public"
+            ]);
+
+            return redirect()->back()->with(['success' => 'The product has been made visible to the public!']);
+        }else{
+            Auth::logout();
+            return view('auth/login');
         }
     }
 }

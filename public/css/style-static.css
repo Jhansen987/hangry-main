@@ -229,6 +229,17 @@ ul .list-text{
 	visibility:visible;
 }
 
+.div-for-nothing-message{
+	width:100%;
+	margin:3rem auto;
+}
+
+.nothing-message{
+	text-align:center;
+	color:#717473;
+	font-size:1.2rem;
+}
+
 @media screen and (max-width:820px){
     .div-nav-link{display:none;}
 	.div-hamburger-icon{display:block;}

@@ -79,31 +79,50 @@ class CartController extends Controller
     public function addCart($id){
         if(Auth::check() && Auth::user()->account_type == 'customer'){
             if(Auth::user()->account_status == 'active'){
-                $product = Product::find($id);
-                $cart = Cart::where('username',Auth::user()->username)
-                        ->where('product_id',$id)->with('product')->first();
 
-                if($cart === null){
-                    $cart = Cart::create([
-                        'username' => Auth::user()->username,
-                        'product_id' => $id,
-                        'quantity' => 1
-                    ]);
-                }else{
-                    if($cart->quantity > $product->stocks){
-                        $currentItemQuantity = $product->stocks;
+                $product = Product::find($id);
+                if($product->stocks > 0){
+                    $cart = Cart::where('username',Auth::user()->username)
+                            ->where('product_id',$id)->with('product')->first();
+
+                    if($cart === null){
+                        $cart = Cart::create([
+                            'username' => Auth::user()->username,
+                            'product_id' => $id,
+                            'quantity' => 1
+                        ]);
+
+                        return response()->json([
+                            'success' => "The item has been successfully added to your cart!"
+                        ]);
+                        
                     }else{
-                        $currentItemQuantity = $cart->quantity + 1;
+                        if($cart->quantity == $product->stocks){
+                            return response()->json([
+                                'success' => "This item in your cart already reached the maximum number of available stocks."
+                            ]);
+                        }else{
+                            if($cart->quantity > $product->stocks){
+                                $currentItemQuantity = $product->stocks;
+                            }else{
+                                $currentItemQuantity = $cart->quantity + 1;
+                            }
+                            
+                            $cart->update([
+                                'quantity' => $currentItemQuantity
+                            ]);
+
+                            return response()->json([
+                                'success' => "The item has been successfully added to your cart!"
+                            ]);
+                        }
                     }
-                    
-                    $cart->update([
-                        'quantity' => $currentItemQuantity
+                }else{
+                    return response()->json([
+                        'success' => "Sorry, it seems that this product already ran out of stock!"
                     ]);
                 }
 
-                return response()->json([
-                    'success' => "The item has been successfully added to your cart!"
-                ]);
             }else{
                 Auth::logout();
                 session()->flash('success','Your account has been blocked by the Administrator.');

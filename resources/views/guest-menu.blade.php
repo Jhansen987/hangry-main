@@ -26,7 +26,13 @@
     </div>
 
     <div class="menu-section">
-
+    @if($products->isEmpty())
+        <div class="div-for-no-items-found">
+            <img src="{{asset('icons/three-dots-red.svg')}}" alt="" style="margin-top:2rem;height:5rem;width:5rem;"><br>
+            There are currently no products available in the website.
+        </div>
+        <div style="height:1rem;width:100%;"></div>
+    @else
     <!-- Generate the "box-menu" div for every menu in database -->
     @foreach($products as $product)
         <div class="box-menu">
@@ -48,7 +54,7 @@
             </div>
         </div>
     @endforeach
-
+    @endif
     </div>
 
 </div>

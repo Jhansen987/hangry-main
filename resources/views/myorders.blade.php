@@ -16,6 +16,13 @@
     </div>
 
     <div class="myorders-section">
+@if($orders->isEmpty())
+    <div class="div-for-no-items-found">
+      <img src="{{asset('icons/three-dots-red.svg')}}" alt="" style="margin-top:2rem;height:5rem;width:5rem;"><br>
+      You have no placed orders in the website.
+    </div>
+    <div style="height:1rem;width:100%;"></div>
+@else
     @foreach($orders as $order)
         <div class="box-order">
             <p class="box-order-id">
@@ -46,7 +53,7 @@
             <button class="btn-box-order" onclick="window.location.href='{{url('vieworder/'.$order->order_id)}}';">VIEW DETAILS</button>
         </div>
     @endforeach
-
+@endif
     </div>
 </div>
 

@@ -15,6 +15,20 @@ class OrderedProduct extends Model
         'product_name',
         'price',
         'product_image_path',
-        'quantity'
+        'quantity',
+        'customer_rating',
+        'customer_message',
+        'reviewed',
+        'datereviewed',
+        'user_id',
+        'product_id'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+
+    public function product(){
+        return $this->belongsTo(Product::class,'product_id','id');
+    }
 }

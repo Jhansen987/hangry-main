@@ -46,7 +46,7 @@
 @if($faqs->isEmpty())
   <div class="div-for-no-items-found">
       <img src="{{asset('icons/three-dots-red.svg')}}" alt="" style="margin-top:2rem;height:5rem;width:5rem;"><br>
-      You currently have no FAQs in the website.
+      No FAQ was found
   </div>
   <div style="height:1rem;width:100%;"></div>
 @else

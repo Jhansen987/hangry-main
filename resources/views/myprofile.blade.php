@@ -17,56 +17,56 @@
         <br><br>
     </div>
     <div class="profile-section">
-        <div class="box-info-1">
+        <div class="box-info-1 border-red">
             FIRST NAME<br>
             <span class="txt-box-info">
                 {{Auth::user()->firstname}}
             </span>
         </div>
 
-        <div class="box-info-1">
+        <div class="box-info-1 border-red">
             LAST NAME<br>
             <span class="txt-box-info">
                 {{Auth::user()->lastname}}
             </span>
         </div>
 
-        <div class="box-info-1">
+        <div class="box-info-1 border-red">
             GENDER<br>
             <span class="txt-box-info">
                 {{Auth::user()->gender}}
             </span>
         </div>
 
-        <div class="box-info-1">
+        <div class="box-info-1 border-red">
             USERNAME<br>
             <span class="txt-box-info">
                 {{Auth::user()->username}}
             </span>
         </div>
 
-        <div class="box-info-1">
+        <div class="box-info-1 border-red">
             CONTACT NUMBER<br>
             <span class="txt-box-info">
                 {{Auth::user()->contactnumber}}
             </span>
         </div>
 
-        <div class="box-info-1">
+        <div class="box-info-1 border-red">
             COUNTRY<br>
             <span class="txt-box-info">
                 Philippines
             </span>
         </div>
 
-        <div class="box-info-1-v2">
+        <div class="box-info-1-v2 border-red">
              HOME ADDRESS<br>
             <span class="txt-box-info">
                 {{Auth::user()->address}}
             </span>
         </div>
 
-        <div class="box-info-1-v2">
+        <div class="box-info-1-v2 border-red">
             EMAIL ADDRESS<br>
             <span class="txt-box-info-email">
                 {{Auth::user()->email}}

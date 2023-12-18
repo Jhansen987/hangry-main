@@ -7,6 +7,8 @@ use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\FaqController;
+use App\Models\FAQ;
 use App\Models\Order;
 use App\Models\OrderedProduct;
 use App\Models\User;
@@ -92,8 +94,9 @@ Route::get('/myprofile', [UserController::class, 'viewUserProfile'])->name('mypr
 
 
 //HELP CENTER
-Route::get('/faq', function (){
-    return view('faq');
+Route::get('/faq', function(){
+    $faqs=FAQ::latest()->paginate(5);
+    return view('faq',compact('faqs'));
 });
 
 Route::get('/termsofservice', function (){
@@ -154,13 +157,11 @@ Route::get('/admin-addProduct',function(){
 
 Route::get('/admin-editProduct/{id}',[ProductController::class,'editProduct']);
 Route::post('/admin-editProduct/update/{id}',[ProductController::class,'updateProduct']);
-
-
 Route::get('/admin-manageProducts',[ProductController::class,'displayAllProducts'])->name('admin-manageProducts');
-
 Route::post('/admin-manageProducts/add',[ProductController::class, 'createProduct'])->name('addProduct');
-
 Route::get('/admin-viewProduct/{id}', [ProductController::class, 'viewProduct'])->name('admin-viewproduct');
+Route::get('/admin-hideProduct/{id}',[ProductController::class,'hideProductFromPublic']);
+Route::get('/admin-unhideProduct/{id}',[ProductController::class,'unhideProductFromPublic']);
 
 //Manage Orders
 Route::get('/admin-manageOrders',[OrderController::class,'viewAllCustomerOrders'])->name('admin-manageOrders');
@@ -195,4 +196,21 @@ Route::get('/searchcustomers', [UserController::class,'searchCustomer'])->name('
 
 
 //MANAGE FAQs
-Route::get('/admin-managefaq',[FaqController::class,'viewFAQ'])->name('admin-manageFAQ');
+Route::get('/admin-manageFAQ',[FaqController::class,'viewFAQ'])->name('admin-manageFAQ');
+
+Route::get('/admin-addFAQ',function(){
+    if(Auth::check() && Auth::user()->account_type == 'admin'){
+        return view("admin/admin-addFAQ");
+    }else{
+        Auth::logout();
+        return view('auth/login');
+    }
+})->name('admin-addFAQ');
+
+Route::get('/admin-manageFAQ/edit/{id}',[FaqController::class,'editFAQ']);
+
+Route::post('/admin-manageFAQ/add',[FaqController::class,'addFAQ'])->name('addFAQ');
+Route::post('/admin-manageFAQ/update',[FaqController::class,'updateFAQ'])->name('updateFAQ');
+Route::get('/admin-manageFAQ/remove/{id}',[FaqController::class,'deleteFAQ'])->name('deleteFAQ');
+
+Route::get('/admin-searchFAQ',[FaqController::class,'searchFAQ'])->name('admin-searchfaq');

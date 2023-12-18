@@ -49,7 +49,6 @@
                     <li><a href="{{route('admin-manageAnnouncements')}}">Announcements</a></li>
                     <li><a href="{{route('admin-viewSalesReport')}}">Sales Report</a></li>
                     <li><a href="{{route('admin-manageFAQ')}}">FAQs</a></li>
-});
                 </ul>
             </li>
             <li><a href="{{route('admin-about')}}">ABOUT</a></li>

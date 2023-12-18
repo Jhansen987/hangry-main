@@ -75,7 +75,7 @@
         <button class="btn-close-nav" onclick="responsiveNav()">X</button>
     </div>
     <div class="mobile-div-username">
-        <img src="asset('icons/user_icon-gray.svg')}}" class="header-icons-1">
+        <img src="{{asset('icons/user_icon-gray.svg')}}" class="header-icons-1">
         Guest
     </div>
     <ul>
@@ -85,7 +85,7 @@
     </ul>
     <button id="mobile-subdropdown-btn-1" class="btn-mobile-nav-link" onclick="responsiveSubDropdown1()">
         Others
-        <img src="asset('icons/down-arrow-icon-gray.svg')}}" alt="" id="nav-arrow-1" class="mobile-nav-icon-1">
+        <img src="{{asset('icons/down-arrow-icon-gray.svg')}}" alt="" id="nav-arrow-1" class="mobile-nav-icon-1">
     </button>
     <div id="mobile-subdropdown-1" class="mobile-nav-subdropdown">
         <ul>

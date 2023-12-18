@@ -4,7 +4,7 @@
 	<meta content="width=device-width, initial-scale=1" name="viewport"/>
 	<meta charset="ISO-8859-1">
 	<title>Edit Menu | Hangry</title>
-	<link rel="stylesheet" href="../css/style-forms.css">
+	<link rel="stylesheet" href="{{asset('css/style-forms.css')}}">
 </head>
 <body>
 

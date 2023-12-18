@@ -49,8 +49,14 @@
     </div>
 
     <div class="menu-section">
-
-        <!-- Generate the "box-menu" div for every menu in database -->
+    @if($products->isEmpty())
+        <div class="div-for-no-items-found">
+            <img src="{{asset('icons/three-dots-red.svg')}}" alt="" style="margin-top:2rem;height:5rem;width:5rem;"><br>
+            No Products Found
+        </div>
+        <div style="height:1rem;width:100%;"></div>
+    @else
+    <!-- Generate the "box-menu" div for every menu in database -->
     @foreach($products as $product)
         <div class="box-menu">
             <div class="menu-table">
@@ -65,8 +71,6 @@
 
                     @if($product->stocks == 0)
                         <p class="menu-status">OUT OF STOCK</p><br>
-                    @else
-                        <button class="btn-menu-1 btn-add-to-cart" id="item[{{$product->id}}]" value="{{$product->id}}">ADD TO CART</button>
                     @endif
                     
                     <button class="btn-menu-1" onclick="window.location.href='{{url('viewproduct/'.$product->id)}}';">VIEW MENU</button> 
@@ -74,7 +78,7 @@
             </div>
         </div>
     @endforeach
-
+    @endif
     </div>
 </div>
 

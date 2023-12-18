@@ -99,8 +99,10 @@
             &#8369 {{$product->price}}
 		</p>
 		<div class="div-viewproduct-1">
-			<button class="btn-action-viewproduct" onclick="window.location.href='checkout.php';">Buy Now</button>
+            @if($product->stocks > 0)
+			<button class="btn-action-viewproduct" onclick="window.location.href='#';">Buy Now</button>
 			<button class="btn-action-viewproduct">Add to Cart</button>
+            @endif
 		</div>
 		<br>
 		<p class="txt-viewproduct-header">PRODUCT DESCRIPTION</p>

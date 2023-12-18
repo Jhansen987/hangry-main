@@ -19,7 +19,16 @@
 		<p class="txt-viewproduct-product-name">
 			{{$product->product_name}}
 		</p>
-		<p class="txt-viewproduct-product-stock">STOCKS: {{$product->stocks}}</p>
+        @if($product->status == 'Hidden from Public')
+            <p class="txt-viewproduct-product-stock">Hidden from Public</p>
+            <p class="txt-viewproduct-product-stock">STOCKS: {{$product->stocks}}</p>
+        @else
+            @if($product->stocks == 0)
+                <p class="txt-viewproduct-product-stock">Out of Stock</p>
+            @else
+		        <p class="txt-viewproduct-product-stock">STOCKS: {{$product->stocks}}</p>
+            @endif
+        @endif
 		<div class="div-viewproduct-rating">
             @if($product->rating == 5)
 			<ul>
@@ -100,7 +109,12 @@
 		</p>
 		<div class="div-viewproduct-1">
 			<button class="btn-action-viewproduct" onclick="window.location.href='{{url('admin-editProduct/'.$product->id)}}';">Edit Product</button>
-            <button class="btn-action-viewproduct">Delete Product</button>
+            
+            @if($product->status == 'Visible to Public')
+                <button class="btn-action-viewproduct" onclick="window.location.href='{{url('admin-hideProduct/'.$product->id)}}';">Hide Product</button>
+            @else
+                <button class="btn-action-viewproduct" onclick="window.location.href='{{url('admin-unhideProduct/'.$product->id)}}';">Unhide Product</button>
+            @endif
 		</div>
 		<br>
 		<p class="txt-viewproduct-header">Product Description</p><hr style="border:2px solid #6a6a69;">

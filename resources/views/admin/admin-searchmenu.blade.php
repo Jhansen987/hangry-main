@@ -37,7 +37,7 @@
 
 <div class="div-for-searchbar">
     <form action = "{{route('searchmenu')}}" method="get">
-        <input id="searchproduct" class="searchbar" type="text" name="searchproduct" placeholder = "Search a Menu..">
+        <input id="searchproduct" class="searchbar-2" type="text" name="searchproduct" placeholder = "Search a Menu..">
 		<button type="submit" class="btn-search-icon"><img src="icons/search-icon-red.svg" alt="" class="search-icon"></button>
     </form>
 </div>

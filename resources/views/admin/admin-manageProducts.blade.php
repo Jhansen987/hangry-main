@@ -67,13 +67,24 @@
       <tr>
         <td>
           <button class="btn-action-general-3" onclick="window.location.href='{{url('admin-viewProduct/'.$product->id)}}';">
-            <img src="../icons/eye-orange-icon.svg" class="btn-icons-3">
+            <img src="../icons/search-icon-red.svg" class="btn-icons-3">
             <p class="position-absolute-message-2">View Product</p>
           </button>
           <button class="btn-action-general-3" onclick="window.location.href='{{url('admin-editProduct/'.$product->id)}}';">
             <img src="../icons/edit-orange-icon.svg" class="btn-icons-3">
             <p class="position-absolute-message-2">Edit</p>
           </button>
+          @if($product->status == "Visible to Public")
+          <button class="btn-action-general-3" onclick="window.location.href='{{url('admin-hideProduct/'.$product->id)}}';">
+            <img src="../icons/eye-orange-icon.svg" class="btn-icons-3">
+            <p class="position-absolute-message-2">Hide From Public</p>
+          </button>
+          @else
+          <button class="btn-action-general-3" onclick="window.location.href='{{url('admin-unhideProduct/'.$product->id)}}';">
+            <img src="../icons/eye-slash_icon.svg" class="btn-icons-3">
+            <p class="position-absolute-message-2">Unhide From Public</p>
+          </button>
+          @endif
         </td>
         <td><img src = "{{asset('storage/'.$product->product_image_path)}}" alt="" class="small-prod-image"></td>
         <td>{{$product->product_name}}</td>

@@ -18,6 +18,14 @@ return new class extends Migration
             $table->decimal('price', 8, 2)->unsigned();
             $table->string('product_image_path', 2048);
             $table->mediumInteger('quantity')->unsigned();
+            $table->tinyInteger('customer_rating')->unsigned();
+            $table->string('customer_message')->nullable();
+            $table->string('reviewed');
+            $table->timestamp('datereviewed')->nullable()->default(NULL);
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
