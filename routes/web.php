@@ -79,6 +79,13 @@ Route::post('/cart/deleteAll',[CartController::class,'deleteAllCartItems']);
 Route::get('/cart/getTotalCartPrice',[CartController::class,'getTotalCartPrice']);
 Route::post('/cart/update',[CartController::class,'updateCartItems'])->name('updateCart');
 
+//BUY NOW - CART
+Route::get('/buynow-cart/{id}',[CartController::class,'viewBuyNowCart'])->name('buynow-cart');
+
+//BUY NOW - CHECKOUT PAGE and PLACE ORDER
+Route::get('/buynow-checkout/{id}',[CartController::class,'viewBuyNowCheckoutItem']);
+Route::post('/myorders/buynow-placeorder',[OrderController::class,'addOrderFromBuyNow'])->name('buynow-placeOrder');
+
 //CHECKOUT PAGE
 Route::get('/checkout',[CartController::class,'viewCheckoutItems']);
 
@@ -212,5 +219,4 @@ Route::get('/admin-manageFAQ/edit/{id}',[FaqController::class,'editFAQ']);
 Route::post('/admin-manageFAQ/add',[FaqController::class,'addFAQ'])->name('addFAQ');
 Route::post('/admin-manageFAQ/update',[FaqController::class,'updateFAQ'])->name('updateFAQ');
 Route::get('/admin-manageFAQ/remove/{id}',[FaqController::class,'deleteFAQ'])->name('deleteFAQ');
-
 Route::get('/admin-searchFAQ',[FaqController::class,'searchFAQ'])->name('admin-searchfaq');

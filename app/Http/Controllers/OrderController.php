@@ -367,36 +367,37 @@ class OrderController extends Controller
                 $orderID = '';
                 $orderID .= rand(100000,999999);
 
-                $carts = Cart::where('username',Auth::user()->username)->with('product')->get();
+                $cart = Cart::where('username',Auth::user()->username)
+                ->where('product_id',$request->buynowproductid)->with('product')->first();
                 $totalCartPrice = 0;
-                foreach($carts as $cart){
-                    $availableStocksLeft = $cart->product->stocks - $cart->quantity;
-                    if($availableStocksLeft < 0){$availableStocksLeft = 0;}
 
-                    $cart->product->update([
-                        'stocks' => $availableStocksLeft
-                    ]);
+                $availableStocksLeft = $cart->product->stocks - $cart->quantity;
+                if($availableStocksLeft < 0){$availableStocksLeft = 0;}
 
-                    $product = Product::find($cart->product->id);
-                    if($product->stocks == 0){
-                        $deleteItemInUserCarts = Cart::where('product_id',$product->id)->delete();
-                    }
-                    
-                    OrderedProduct::create([
-                        'order_id' => $orderID,
-                        'product_name' => $cart->product->product_name,
-                        'price' => $cart->product->price,
-                        'product_image_path' => $cart->product->product_image_path,
-                        'quantity' => $cart->quantity,
-                        'customer_rating' => 0,
-                        'reviewed' => "No",
-                        'user_id' => Auth::user()->id,
-                        'product_id' => $cart->product->id
-                    ]);
+                $cart->product->update([
+                    'stocks' => $availableStocksLeft
+                ]);
 
-                    $totalItemPrice = $cart->product->price * $cart->quantity;
-                    $totalCartPrice = $totalCartPrice + $totalItemPrice;
+                $product = Product::find($cart->product->id);
+                if($product->stocks == 0){
+                    $deleteItemInUserCarts = Cart::where('product_id',$product->id)->delete();
                 }
+                    
+                OrderedProduct::create([
+                    'order_id' => $orderID,
+                    'product_name' => $cart->product->product_name,
+                    'price' => $cart->product->price,
+                    'product_image_path' => $cart->product->product_image_path,
+                    'quantity' => $cart->quantity,
+                    'customer_rating' => 0,
+                    'reviewed' => "No",
+                    'user_id' => Auth::user()->id,
+                    'product_id' => $cart->product->id
+                ]);
+
+                $totalItemPrice = $cart->product->price * $cart->quantity;
+                $totalCartPrice = $totalCartPrice + $totalItemPrice;
+                
             
                 Order::create([
                     'order_id' => $orderID,
@@ -415,7 +416,8 @@ class OrderController extends Controller
                     'created_at' => Carbon::now()
                 ]);
 
-                $deleteAll = Cart::where('username', Auth::user()->username)->delete();
+                $delete = Cart::where('username', Auth::user()->username)
+                ->where('product_id',$cart->product->id)->delete();
 
                 $order = Order::where('order_id',$orderID)->first();
                 $orderedproducts = OrderedProduct::where('order_id',$orderID)->get();

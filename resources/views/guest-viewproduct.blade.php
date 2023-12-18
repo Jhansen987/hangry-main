@@ -99,7 +99,7 @@
             &#8369 {{$product->price}}
 		</p>
 		<br>
-		<p class="txt-viewproduct-header">PRODUCT DESCRIPTION</p>
+		<p class="txt-viewproduct-header">PRODUCT DESCRIPTION</p><hr style="border:2px solid #6a6a69;">
 		<p class="txt-viewproduct-product-description">
             {!! nl2br($product->description) !!}
 		</p>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Cart;
@@ -197,6 +198,103 @@ class CartController extends Controller
                     'success' => "Your items have been updated in your cart successfully!",
                     'cartTotalPrice' => $displayTotalCartPrice
                 ]);
+            }else{
+                Auth::logout();
+                session()->flash('success','Your account has been blocked by the Administrator.');
+                return view('auth/login');
+            }
+        }else{
+            Auth::logout();
+            return view('auth/login');
+        }
+    }
+
+    public function viewBuyNowCart($id){
+        if(Auth::check() && Auth::user()->account_type == 'customer'){
+            if(Auth::user()->account_status == 'active'){
+                
+                $product = Product::find($id);
+
+                if($product->status == 'Visible to Public'){
+
+                    if($product->stocks <= 0){
+                        return Redirect()->back()->with(['success'=> 'Sorry, the product already ran out of stock just now.']);
+                    }else{
+                        $cart = Cart::where('username',Auth::user()->username)
+                        ->where('product_id',$id)
+                        ->with('product')
+                        ->first();
+                        $totalCartPrice = 0;
+
+                        if($cart === null){
+                            Cart::create([
+                                'username' => Auth::user()->username,
+                                'product_id' => $id,
+                                'quantity' => 1
+                            ]);
+
+                            $cart = Cart::where('username',Auth::user()->username)
+                            ->where('product_id',$id)
+                            ->with('product')
+                            ->first();
+
+                            $totalItemPrice = $cart->product->price * $cart->quantity;
+                            $totalCartPrice = $totalCartPrice + $totalItemPrice;
+                            return view('buynow-cart',compact('cart','totalCartPrice'));
+                        }else{
+                            $totalItemPrice = $cart->product->price * $cart->quantity;
+                            $totalCartPrice = $totalCartPrice + $totalItemPrice;
+                            return view('buynow-cart',compact('cart','totalCartPrice'));
+                        }
+
+            
+                    }
+            
+                }else{
+                    return Redirect()->url('menu')->with(['success'=> 'Sorry, the product has been made temporary unavailable by the Administrator just now.']);
+                }
+                
+            }else{
+                Auth::logout();
+                session()->flash('success','Your account has been blocked by the Administrator.');
+                return view('auth/login');
+            }
+        }else{
+            Auth::logout();
+            return view('auth/login');
+        }
+    }
+
+    public function viewBuyNowCheckoutItem($id){
+        if(Auth::check() && Auth::user()->account_type == 'customer'){
+            if(Auth::user()->account_status == 'active'){
+
+                $cart = Cart::where('username',Auth::user()->username)
+                        ->where('product_id',$id)
+                        ->with('product')
+                        ->first();
+                
+                if($cart->product->stocks == 0){
+                    $cart->delete();
+                    return Redirect()->url('viewproduct'.$id)->with(['success'=> 'Sorry, the product already ran out of stock just now.']);
+                }else if($cart->product->stocks < $cart->quantity){
+                    
+                    $cart->update([
+                        'quantity' => $cart->product->stocks
+                    ]);
+                    $totalCartPrice = 0;
+                    $totalItemPrice = 0;
+                    $totalItemPrice = $cart->product->price * $cart->quantity;
+                    $totalCartPrice = $totalCartPrice + $totalItemPrice;
+                    return view('buynow-checkout',compact('cart','totalCartPrice'));
+                }else{
+                    $totalCartPrice = 0;
+                    $totalItemPrice = 0;
+                    $totalItemPrice = $cart->product->price * $cart->quantity;
+                    $totalCartPrice = $totalCartPrice + $totalItemPrice;
+                    return view('buynow-checkout',compact('cart','totalCartPrice'));
+                }
+
             }else{
                 Auth::logout();
                 session()->flash('success','Your account has been blocked by the Administrator.');
