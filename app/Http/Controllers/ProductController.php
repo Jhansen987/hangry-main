@@ -40,7 +40,7 @@ class ProductController extends Controller
                 'menuName' => 'required|string|unique:products,product_name',
                 'menuPrice' => 'required|numeric|min:0',
                 'menuStock' => 'required|numeric|min:0',
-                'menuDescription' => 'string',
+                'menuDescription' => 'string|max:3000',
             ]);
 
             //checks if product-images folder has already been created in the storage disk, if not, create one..
@@ -91,7 +91,7 @@ class ProductController extends Controller
                     'menuName' => 'required|string',
                     'menuPrice' => 'required|numeric|min:0',
                     'menuStock' => 'required|numeric|min:0',
-                    'menuDescription' => 'string',
+                    'menuDescription' => 'string|max:3000',
                 ]);
             }else{
                 $validated = $request->validate([

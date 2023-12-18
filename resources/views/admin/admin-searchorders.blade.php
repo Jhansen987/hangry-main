@@ -40,6 +40,14 @@
     </form>
 </div>
 
+@if($orders->isEmpty())
+  <div class="div-for-no-items-found">
+      <img src="{{asset('icons/three-dots-red.svg')}}" alt="" style="margin-top:2rem;height:5rem;width:5rem;"><br>
+      No Orders Found
+  </div>
+  <div style="height:1rem;width:100%;"></div>
+@else
+
 <div class="div-for-general-table">
 <table class="general-table">
 
@@ -87,6 +95,7 @@
 
 </table>
 </div>
+@endif
 <!-- Pagination for customer orders -->
 {{$orders->links()}}
 <div style="height:1rem;width:100%;margin-top:10rem;"></div>
